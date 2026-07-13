@@ -1,0 +1,26 @@
+{
+  "name": "codequest-app",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "generate-codes": "node scripts/generate-codes.js",
+    "seed-codes": "node scripts/seed-codes.js",
+    "create-instructor-code": "node scripts/create-instructor-code.js",
+    "upload-pdfs": "node scripts/upload-pdfs.js"
+  },
+  "dependencies": {
+    "mongodb": "6.7.0",
+    "next": "^16.2.10",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "dotenv": "16.4.5"
+  }
+}
