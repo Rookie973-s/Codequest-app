@@ -1058,15 +1058,14 @@ function onScroll(){
 window.addEventListener('scroll', onScroll);
 onScroll();
 
-// ---------- Show Preview/testing tools only for instructor logins ----------
-(async function revealPreviewToolsIfInstructor(){
+// ---------- Instructor session check (shared by preview tools + all locking) ----------
+let IS_INSTRUCTOR = false;
+const sessionReady = (async function checkSession(){
   try{
     const res = await fetch('/api/session');
     const data = await res.json();
-    if(data && data.isInstructor){
-      document.getElementById('previewTools').style.display = '';
-    }
-  }catch(e){ /* fails safe: panel stays hidden */ }
+    IS_INSTRUCTOR = !!(data && data.isInstructor);
+  }catch(e){ IS_INSTRUCTOR = false; }
 })();
 
 
@@ -1153,6 +1152,11 @@ function initCodeGates(){
     const id = panel.id;
     if(!CODE_HASHES[id]) return;
 
+    if(IS_INSTRUCTOR){
+      panel.classList.add('unlocked');
+      return;
+    }
+
     const contentWrap = document.createElement('div');
     contentWrap.className = 'sub-content';
     while(panel.firstChild) contentWrap.appendChild(panel.firstChild);
@@ -1211,7 +1215,7 @@ function initCodeGates(){
     if(getSeen()[id]) panel.classList.add('unlocked');
   });
 }
-initCodeGates();
+sessionReady.then(initCodeGates);
 
 // ---------- Level-by-level gating ----------
 const LEVEL_IDS = ['w1','w2','w3','w4','w5'];
@@ -1275,6 +1279,7 @@ function isLevelRead(idx){
 function isTimeUnlocked(idx){ return getNow() >= LEVEL_UNLOCK_TIMES[idx]; }
 
 function computeMaxAccessible(){
+  if(IS_INSTRUCTOR) return LEVEL_IDS.length - 1;
   let timeMax = -1;
   for(let i=0;i<LEVEL_IDS.length;i++){
     if(isTimeUnlocked(i)) timeMax = i; else break;
@@ -1369,6 +1374,10 @@ function refreshLevelGate(scrollTop){
     nextBtn.disabled = true;
     nextBtn.innerHTML = 'Quest Complete <svg class="icon sm"><use href="#i-trophy"/></svg>';
     lockMsg.textContent = isLevelRead(current) ? "You've finished the whole quest!" : 'Finish every topic in this final level to complete the quest.';
+  } else if(IS_INSTRUCTOR){
+    nextBtn.disabled = false;
+    nextBtn.innerHTML = 'Next Level <svg class="icon sm"><use href="#i-chevron"/></svg>';
+    lockMsg.textContent = 'Instructor mode — every level and topic is unlocked.';
   } else {
     const readDone = isLevelRead(current);
     const nextTimeOk = isTimeUnlocked(current+1);
@@ -1386,8 +1395,13 @@ function refreshLevelGate(scrollTop){
   if(scrollTop) window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-refreshLevelGate(true);
-setInterval(() => refreshLevelGate(false), 30000);
+sessionReady.then(() => {
+  refreshLevelGate(true);
+  setInterval(() => refreshLevelGate(false), 30000);
+  if(IS_INSTRUCTOR){
+    document.getElementById('previewTools').style.display = '';
+  }
+});
 
 // ---------- Week 1 ----------
 let helloRan = false;
