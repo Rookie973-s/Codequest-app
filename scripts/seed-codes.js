@@ -2,6 +2,8 @@
 // Reads codes.json (from generate-codes.js), hashes each code with
 // HMAC-SHA256 + CODE_PEPPER, and upserts them into MongoDB. The plain-text
 // code is never written to the database - only the hash is stored.
+// Each code starts life as used:false so it can be redeemed exactly once
+// by /api/login.
 // Run with: npm run seed-codes
 require('dotenv').config();
 const fs = require('fs');
@@ -54,7 +56,9 @@ async function main() {
         $setOnInsert: {
           lookupHash,
           label,
+          role: 'student',
           active: true,
+          used: false,
           useCount: 0,
           createdAt: new Date(),
         },
@@ -65,6 +69,7 @@ async function main() {
   }
 
   console.log(`Seeded ${inserted} new access codes (out of ${codes.length} total in codes.json).`);
+  console.log('Each code is single-use: used:false until someone logs in with it.');
   await client.close();
 }
 
