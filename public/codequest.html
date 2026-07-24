@@ -508,6 +508,25 @@
   .chip { transition: var(--transition-bounce); }
   .chip:hover { transform: translateY(-3px) scale(1.06); }
 
+  /* ---------- PROJECT SHOWCASE CARDS ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin: 8px 0 26px; }
+  .proj-card { background: var(--card); border: 1px solid var(--card-line); border-radius: 16px; padding: 18px 20px; transition: var(--transition); backdrop-filter: blur(10px); }
+  .proj-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.25); box-shadow: var(--shadow-sm); }
+  .proj-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: var(--cd); color: var(--c); font-weight: 800; font-family: 'Baloo 2'; font-size: 14px; margin-bottom: 10px; }
+  .proj-card h4 { margin: 0 0 6px; font-size: 16px; color: var(--ink); }
+  .proj-card p { margin: 0; font-size: 13.5px; color: var(--ink-dim); line-height: 1.55; }
+
+  /* ---------- KEY TERMS GLOSSARY GRID ---------- */
+  .term-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 8px 0 26px; }
+  .term-card { background: rgba(0,0,0,0.15); border: 1px solid var(--card-line); border-radius: 12px; padding: 12px 16px; }
+  .term-card b { display: block; color: var(--c); font-size: 14px; margin-bottom: 4px; font-family: 'Baloo 2'; }
+  .term-card span { font-size: 13px; color: var(--ink-dim); line-height: 1.5; }
+
+  /* ---------- NUMBERED REVIEW / HOMEWORK LISTS ---------- */
+  .review-list { list-style: none; margin: 0 0 26px; padding: 0; counter-reset: rq; display: flex; flex-direction: column; gap: 10px; max-width: 720px; }
+  .review-list li { counter-increment: rq; display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--ink-soft); line-height: 1.55; background: rgba(0,0,0,0.15); border: 1px solid var(--card-line); border-radius: 12px; padding: 10px 14px; }
+  .review-list li::before { content: counter(rq); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--cd); color: var(--c); font-weight: 800; font-size: 12.5px; display: flex; align-items: center; justify-content: center; }
+
   /* ---------- TOAST ---------- */
   .toast {
     position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%) translateY(20px);
@@ -618,6 +637,8 @@
 <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"></circle><path d="M12 11v5.5"></path><circle cx="12" cy="7.6" fill="currentColor" r=".3" stroke="none"></circle></symbol>
 <symbol id="i-lock" viewBox="0 0 24 24"><rect height="9" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path><circle cx="12" cy="15.3" fill="currentColor" r="1.2" stroke="none"></circle></symbol>
 <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="M7.5 10.5L12 15l4.5-4.5"></path><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></symbol>
+<symbol id="i-calculator" viewBox="0 0 24 24"><rect height="18" rx="2" width="14" x="5" y="3"></rect><rect height="4" width="8" x="8" y="6"></rect><circle cx="8.5" cy="14" fill="currentColor" r="1" stroke="none"></circle><circle cx="12" cy="14" fill="currentColor" r="1" stroke="none"></circle><circle cx="15.5" cy="14" fill="currentColor" r="1" stroke="none"></circle><circle cx="8.5" cy="18" fill="currentColor" r="1" stroke="none"></circle><circle cx="12" cy="18" fill="currentColor" r="1" stroke="none"></circle><circle cx="15.5" cy="18" fill="currentColor" r="1" stroke="none"></circle></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"></circle><ellipse cx="12" cy="12" rx="4" ry="9.5"></ellipse><path d="M2.5 9h19M2.5 15h19"></path></symbol>
 </defs>
 </svg>
 <section class="hero">
@@ -639,7 +660,7 @@
 <span class="hero-tag"><svg class="icon"><use href="#i-controller"></use></svg> New level unlocks each week, class-time</span>
 <div class="hero-stats">
 <div class="hstat"><b>5</b><span>Levels</span></div>
-<div class="hstat"><b>28</b><span>Sub-Levels</span></div>
+<div class="hstat"><b>34</b><span>Chapters</span></div>
 <div class="hstat"><b>10</b><span>Sessions</span></div>
 <div class="hstat"><b>1</b><span>Epic Game</span></div>
 </div>
@@ -657,11 +678,11 @@
 <path d="M40 20 Q 200 -10 400 20 T 760 20" fill="none" stroke="rgba(255,255,255,0.15)" stroke-dasharray="4 12" stroke-linecap="round" stroke-width="3"></path>
 </svg>
 <div class="nodes">
-<a class="node" href="javascript:void(0)" onclick="goToLevel(0)" style="--c:var(--w1);--cd:var(--w1-d)"><div class="node-badge"><svg class="icon"><use href="#i-chat"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Talk to<br/>the Computer</div></a>
-<a class="node" href="javascript:void(0)" onclick="goToLevel(1)" style="--c:var(--w2);--cd:var(--w2-d)"><div class="node-badge"><svg class="icon"><use href="#i-traffic"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Make<br/>Decisions</div></a>
-<a class="node" href="javascript:void(0)" onclick="goToLevel(2)" style="--c:var(--w3);--cd:var(--w3-d)"><div class="node-badge"><svg class="icon"><use href="#i-turtle"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Draw &amp;<br/>Organize</div></a>
-<a class="node" href="javascript:void(0)" onclick="goToLevel(3)" style="--c:var(--w4);--cd:var(--w4-d)"><div class="node-badge"><svg class="icon"><use href="#i-controller"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Build the<br/>Game</div></a>
-<a class="node" href="javascript:void(0)" onclick="goToLevel(4)" style="--c:var(--w5);--cd:var(--w5-d)"><div class="node-badge"><svg class="icon"><use href="#i-trophy"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Ship<br/>It!</div></a>
+<a class="node" href="javascript:void(0)" onclick="goToLevel(0)" style="--c:var(--w1);--cd:var(--w1-d)"><div class="node-badge"><svg class="icon"><use href="#i-cpu"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Build Your<br/>Foundation</div></a>
+<a class="node" href="javascript:void(0)" onclick="goToLevel(1)" style="--c:var(--w2);--cd:var(--w2-d)"><div class="node-badge"><svg class="icon"><use href="#i-traffic"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Teach Python<br/>to Think</div></a>
+<a class="node" href="javascript:void(0)" onclick="goToLevel(2)" style="--c:var(--w3);--cd:var(--w3-d)"><div class="node-badge"><svg class="icon"><use href="#i-turtle"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Bring Code<br/>to Life</div></a>
+<a class="node" href="javascript:void(0)" onclick="goToLevel(3)" style="--c:var(--w4);--cd:var(--w4-d)"><div class="node-badge"><svg class="icon"><use href="#i-controller"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Build Your<br/>First Game</div></a>
+<a class="node" href="javascript:void(0)" onclick="goToLevel(4)" style="--c:var(--w5);--cd:var(--w5-d)"><div class="node-badge"><svg class="icon"><use href="#i-trophy"></use></svg><svg class="icon sm node-lock"><use href="#i-lock"></use></svg></div><div class="node-label">Create &amp;<br/>Showcase</div></a>
 </div>
 </nav>
 </div>
@@ -669,63 +690,80 @@
 <!-- ========== WEEK 1 ========== -->
 <section class="level" id="w1" style="--c:var(--w1);--cd:var(--w1-d)">
 <p class="level-eyebrow"><svg class="icon sm"><use href="#i-flag"></use></svg> Level 1 · Week 1</p>
-<div class="level-head"><div class="level-num">1</div><h2>Talk to the Computer</h2></div>
-<p class="level-blurb">A computer only does <b>exactly</b> what you type — nothing more, nothing less. This week you'll set up your coding headquarters, meet Python, and make the computer speak for the very first time.</p>
+<div class="level-head"><div class="level-num">1</div><h2>Building Your Foundation</h2></div>
+<p class="level-blurb">Before you can build a game, you need to think like a programmer. This week you'll meet programming itself, meet Python, set up your coding headquarters, and make the computer speak, listen, and do math for the very first time.</p>
 <div class="sublevels" data-level="w1">
 <div class="subtabs" role="tablist">
-<button class="subtab active" onclick="showSub(this,'w1-1')"><svg class="icon"><use href="#i-cpu"></use></svg><span class="subtab-n">1.1</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w1-2')"><svg class="icon"><use href="#i-code"></use></svg><span class="subtab-n">1.2</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w1-3')"><svg class="icon"><use href="#i-terminal"></use></svg><span class="subtab-n">1.3</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w1-4')"><svg class="icon"><use href="#i-chat"></use></svg><span class="subtab-n">1.4</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w1-5')"><svg class="icon"><use href="#i-backpack"></use></svg><span class="subtab-n">1.5</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w1-6')"><svg class="icon"><use href="#i-keyboard"></use></svg><span class="subtab-n">1.6</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w1-7'); runHello();"><svg class="icon"><use href="#i-play"></use></svg><span class="subtab-n">1.7</span><span class="seen-dot"></span></button>
+<button class="subtab active" onclick="showSub(this,'w1-1')"><svg class="icon"><use href="#i-cpu"></use></svg><span class="subtab-n">Ch 1</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-2')"><svg class="icon"><use href="#i-globe"></use></svg><span class="subtab-n">Ch 2</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-3')"><svg class="icon"><use href="#i-terminal"></use></svg><span class="subtab-n">Ch 3</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-4')"><svg class="icon"><use href="#i-chat"></use></svg><span class="subtab-n">Ch 4</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-5')"><svg class="icon"><use href="#i-backpack"></use></svg><span class="subtab-n">Ch 5</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-6')"><svg class="icon"><use href="#i-keyboard"></use></svg><span class="subtab-n">Ch 6</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-7')"><svg class="icon"><use href="#i-calculator"></use></svg><span class="subtab-n">Ch 7</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-8'); runHello();"><svg class="icon"><use href="#i-play"></use></svg><span class="subtab-n">Ch 8</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w1-9')"><svg class="icon"><use href="#i-book"></use></svg><span class="subtab-n">Recap</span><span class="seen-dot"></span></button>
 </div>
 <div class="subpanels">
+
 <div class="subpanel active" id="w1-1">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-cpu"></use></svg></div><div><p class="sub-eyebrow">Level 1.1</p><h3>What Is Programming, Really?</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Programming means writing a to-do list so clear and complete that a computer can follow it without guessing.</p></div></div>
-<p class="sub-body">Programming means giving a computer instructions so exact and complete that it can follow them with zero common sense of its own. Every game you build this quest is really one long, extremely specific to-do list — telling the computer precisely how to draw a hero, move enemies, and know when the player has won. <span class="sub-body-extra">Think of it like giving directions to a friend who follows them perfectly but never fills in a blank for you — skip a step, and the computer gets stuck instead of figuring out what you meant.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Computers are fast, but they have zero imagination — they only do what you actually tell them.</li><li>Every app, game and website you use started life as a list of steps just like this.</li><li>Learning to "think in steps" is the real superpower behind every level in this quest.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>The word "bug" for a coding mistake is said to date back to 1947, when engineers found an actual moth stuck inside a computer relay — which is why fixing an error is called "debugging."</div></div>
-<div class="chips"><span class="chip">instructions</span><span class="chip">precision</span><span class="chip">step-by-step</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-1', 'What Is Programming, Really?')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-cpu"></use></svg></div><div><p class="sub-eyebrow">Chapter 1 · Level 1.1</p><h3>Welcome to the World of Programming</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Programming means writing a to-do list so clear and complete that a computer can follow it without guessing — and it's how every app, website, and game gets made.</p></div></div>
+<p class="sub-body">Before you touch a single line of Python, it helps to slow down and ask a bigger question: what is programming, actually? Programming means giving a computer instructions so exact that it can follow them with zero common sense of its own. "Coding" is the everyday word for the act of typing those instructions in a language a computer understands, while "programming" is the bigger skill of planning, designing, and solving the problem behind the code — coding is one part of programming, not the whole thing. A computer program is simply the finished list of instructions, saved and ready to run any time. <span class="sub-body-extra">Traffic lights, microwave timers, video game enemies, and the maps app on a phone are all running programs — someone, somewhere, wrote out exactly what should happen and when.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Coding is typing the instructions; programming is the whole skill of planning and solving the problem.</li><li>Computers are fast, but they have zero imagination — they only do what you actually tell them.</li><li>Every app, game, and website you've ever used started life as a list of steps just like this.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Real-Life Examples</b><br/>A traffic light cycling red-yellow-green, a washing machine's spin cycle, autocorrect on your phone, and every enemy in a video game are all programs — step-by-step instructions someone wrote in advance.</div></div>
+<div class="chips"><span class="chip">programming</span><span class="chip">coding vs programming</span><span class="chip">computer program</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-1', 'Welcome to the World of Programming')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w1-2">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-code"></use></svg></div><div><p class="sub-eyebrow">Level 1.2</p><h3>What Is Python?</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Python is one of the friendliest programming languages to read and write, which is why it's perfect for your first real game.</p></div></div>
-<p class="sub-body">Python is a beginner-friendly language that reads almost like plain English, which is why it quietly powers everything from social media feeds to NASA research — and why it's perfect for building 2D games fast. Clean syntax means you spend less time fighting grammar and more time designing. <span class="sub-body-extra">Because it reads so close to plain English, you'll spend this quest focused on your game ideas instead of wrestling with confusing symbols.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Readable code means fewer mistakes and faster learning.</li><li>The exact skills you build here transfer straight into real jobs in games, apps, and science.</li><li>Millions of people already use Python, so there's always help nearby when you get stuck.</li></ul></div>
-<div class="chips"><span class="chip">readable syntax</span><span class="chip">general-purpose</span><span class="chip">industry standard</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-2', 'What Is Python?')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-globe"></use></svg></div><div><p class="sub-eyebrow">Chapter 2 · Level 1.2</p><h3>Meet Python</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Python is one of the world's most popular programming languages because it reads almost like plain English — which makes it perfect for building your first real game.</p></div></div>
+<p class="sub-body">A programming language is simply a set of words and symbols that both humans and computers can understand — Python, Java, C++, and JavaScript are four popular examples, each with its own strengths (Java for big business apps, C++ for high-speed games, JavaScript for websites). Python stands out for being clean and readable, which is why it quietly powers everything from Instagram's backend to NASA's research, and why games, websites, artificial intelligence, automation scripts, and data analysis all lean on it. Python was created by Guido van Rossum and first released in 1991, named after the comedy show <i>Monty Python's Flying Circus</i> rather than the snake. <span class="sub-body-extra">Because Python reads so close to plain English, you'll spend this quest focused on your game ideas instead of wrestling with confusing symbols.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Readable code means fewer mistakes and faster learning, especially for beginners.</li><li>The exact skills you build here transfer straight into real jobs in games, apps, and science.</li><li>Millions of people already use Python, so there's always help nearby when you get stuck.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>Python wasn't named after the snake — creator Guido van Rossum named it after the British comedy troupe Monty Python, because he wanted programming to feel a little fun.</div></div>
+<div class="chips"><span class="chip">Java</span><span class="chip">C++</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">1991</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-2', 'Meet Python')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w1-3">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-terminal"></use></svg></div><div><p class="sub-eyebrow">Level 1.3</p><h3>Setting Up Our Coding Headquarters</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Before writing any code, you need two tools ready: Python (the engine that runs your instructions) and VS Code (the notebook where you write them).</p></div></div>
-<p class="sub-body">Every coder needs two tools before writing a single line: Python itself, the engine that runs your instructions, and Visual Studio Code, a text editor built specifically for programmers with color-coded syntax and built-in error checking. Installing the Python extension gives VS Code superpowers like autocomplete and instant typo warnings. <span class="sub-body-extra">Install Python first, then VS Code, then the Python extension — in that order — so each tool can find the one before it.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Python actually runs your code; VS Code just helps you write it neatly.</li><li>The Python extension adds color-coding and autocomplete, like spell-check for programmers.</li><li>Getting set up correctly the first time saves a lot of confusing errors later.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>On Windows, check the "Add Python to PATH" box during install, or your computer won't be able to find Python later.</div></div>
-<div class="chips"><span class="chip">Python 3.11+</span><span class="chip">VS Code</span><span class="chip">extensions</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-3', 'Setting Up Our Coding Headquarters')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-terminal"></use></svg></div><div><p class="sub-eyebrow">Chapter 3 · Level 1.3</p><h3>Setting Up Your Coding Environment</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Before writing any code, you need two tools ready: Python (the engine that runs your instructions) and PyCharm (the workspace where you write, organize, and run your projects).</p></div></div>
+<p class="sub-body">Every coder needs two tools before writing a single line: Python itself, the engine that runs your instructions, and <b>PyCharm Community Edition</b>, a free workspace built specifically for Python with color-coded syntax, autocomplete, and one-click running. After installing both, you'll create your first PyCharm project — a folder PyCharm keeps organized for you — and get comfortable with its interface: the <b>Project Panel</b> on the left lists your files, the <b>Editor</b> in the center is where you type code, the <b>Run window</b> at the bottom shows your program's output, and the built-in <b>Terminal</b> lets you type commands directly. From there, creating your first <code class="mono">.py</code> file and clicking the green Run button is all it takes to bring code to life. <span class="sub-body-extra">Install Python first, then PyCharm, so PyCharm can find the Python engine already sitting on your computer.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Python actually runs your code; PyCharm just helps you write and organize it.</li><li>Knowing where the Project Panel, Editor, Run window, and Terminal live saves confusion every single class.</li><li>Getting set up correctly the first time saves a lot of confusing errors later.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>On Windows, check the "Add Python to PATH" box during install, or PyCharm won't be able to find Python later.</div></div>
+<div class="chips"><span class="chip">Python 3.11+</span><span class="chip">PyCharm CE</span><span class="chip">Project Panel</span><span class="chip">Run window</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-3', 'Setting Up Your Coding Environment')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w1-4">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-chat"></use></svg></div><div><p class="sub-eyebrow">Level 1.4</p><h3>Hello, World! &amp; Your New Best Friend, Errors</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>print() is the first command every programmer learns — it makes the computer show words on the screen.</p></div></div>
-<p class="sub-body">Almost every programmer in history writes a "Hello, World!" program as their first line of code, using <code class="mono">print()</code> to make the computer speak. When an error shows up, it isn't a failure — it's the computer politely asking you to double check one specific line, and reading those messages calmly is half of real coding. <span class="sub-body-extra">An error message isn't a sign you failed; it's the computer politely pointing at one specific line and asking you to take a second look.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>print() lets you check that your code is really doing what you expect.</li><li>Errors always point to a specific line — read them like clues, not scary warnings.</li><li>Every professional programmer, every single day, still reads error messages like these.</li></ul></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-chat"></use></svg></div><div><p class="sub-eyebrow">Chapter 4 · Level 1.4</p><h3>Writing Your First Python Program</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>print() is the first command every programmer learns — it makes the computer show words on the screen — and errors are not failures, they're clues.</p></div></div>
+<p class="sub-body">Almost every programmer in history writes a "Hello, World!" program as their very first line of code, using <code class="mono">print()</code> to make the computer speak. Comments, written after a <code class="mono">#</code>, are notes for humans that Python quietly ignores — handy for explaining what your code does. When an error shows up, it isn't a failure — it's the computer politely asking you to double-check one specific line. The big three you'll meet constantly are <code class="mono">SyntaxError</code> (broken grammar, like a missing quote), <code class="mono">NameError</code> (a word Python doesn't recognize), and <code class="mono">IndentationError</code> (spacing that doesn't match what Python expects). <span class="sub-body-extra">An error message isn't a sign you failed; it's the computer politely pointing at one specific line and asking you to take a second look — that's the debugging mindset every programmer builds over time.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>print() lets you check that your code is really doing what you expect.</li><li>Errors always point to a specific line — read them like clues, not scary warnings.</li><li>Every professional programmer, every single day, still reads error messages like these.</li></ul></div>
 <div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>SyntaxError usually means a missing quote or colon. NameError means Python doesn't recognize a word you typed. IndentationError means your spacing doesn't match what Python expects.</div></div>
-<div class="chips"><span class="chip">print()</span><span class="chip">SyntaxError</span><span class="chip"># comments</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-4', 'Hello, World! &amp; Your New Best Friend, Errors')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="chips"><span class="chip">print()</span><span class="chip"># comments</span><span class="chip">SyntaxError</span><span class="chip">debugging mindset</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-4', 'Writing Your First Python Program')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w1-5">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-backpack"></use></svg></div><div><p class="sub-eyebrow">Level 1.5</p><h3>Variables &amp; Data Types: Labeled Backpack Pockets</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A variable is a labeled storage box that holds a piece of information — like a name, a score, or whether the game is over — so you can use it again later.</p></div></div>
-<p class="sub-body">A variable is a labeled pocket that stores a piece of information for later — think of a backpack with a pocket named <code class="mono">player_name</code> and another named <code class="mono">score</code>. Every value also belongs to a data type: strings for text, integers for whole numbers, floats for decimals, and booleans for simple True/False switches like <code class="mono">is_game_over</code>. <span class="sub-body-extra">Giving your variables clear names, like player_health instead of just x, makes your own code much easier to understand when you come back to it.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Clear variable names make code easier to read — for you and for teammates.</li><li>Every value has a type, and Python needs to know that type to use it correctly.</li><li>Booleans are the simplest and most powerful type of all — just True or False.</li></ul></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-backpack"></use></svg></div><div><p class="sub-eyebrow">Chapter 5 · Level 1.5</p><h3>Variables &amp; Data Types: Labeled Backpack Pockets</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A variable is a labeled storage box that holds a piece of information — like a name, a score, or whether the game is over — so you can use it again later.</p></div></div>
+<p class="sub-body">A variable is a labeled pocket that stores a piece of information for later — think of a backpack with a pocket named <code class="mono">player_name</code> and another named <code class="mono">score</code>. Naming rules are simple: names can't start with a number, can't contain spaces, and are case-sensitive, so <code class="mono">score</code> and <code class="mono">Score</code> are different variables entirely. Every value also belongs to a data type: <b>strings</b> for text, <b>integers</b> for whole numbers, <b>floats</b> for decimals, and <b>booleans</b> for simple True/False switches like <code class="mono">is_game_over</code>. The built-in <code class="mono">type()</code> function tells you exactly which data type any value is. <span class="sub-body-extra">Giving your variables clear names, like player_health instead of just x, makes your own code much easier to understand when you come back to it.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Clear variable names make code easier to read — for you and for teammates.</li><li>Every value has a type, and Python needs to know that type to use it correctly.</li><li>Booleans are the simplest and most powerful type of all — just True or False.</li></ul></div>
 <div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>Games use booleans constantly behind the scenes — <code class="mono">has_key</code>, <code class="mono">is_jumping</code>, and <code class="mono">is_paused</code> are always exactly True or False, nothing in between.</div></div>
-<div class="chips"><span class="chip">str</span><span class="chip">int</span><span class="chip">float</span><span class="chip">bool</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-5', 'Variables &amp; Data Types: Labeled Backpack Pockets')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="chips"><span class="chip">str</span><span class="chip">int</span><span class="chip">float</span><span class="chip">bool</span><span class="chip">type()</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-5', 'Variables &amp; Data Types')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w1-6">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-keyboard"></use></svg></div><div><p class="sub-eyebrow">Level 1.6</p><h3>Input, Interactivity &amp; Type Conversion</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>input() lets your program ask the player a question and wait for their answer — but that answer always arrives as plain text, even if it looks like a number.</p></div></div>
-<p class="sub-body">The <code class="mono">input()</code> function pauses your program to ask the player a question and wait for an answer — but it always hands that answer back as text, even when it looks like a number. Wrapping it in <code class="mono">int()</code> or <code class="mono">float()</code>, called type conversion, is how you teach Python to actually do math with whatever the player typed. <span class="sub-body-extra">That's why converting the answer with int() or float() is such an important habit — it's the difference between Python reading "5" as a word versus a number it can actually add and subtract.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Wrap input() in int() or float() before doing any math with the answer.</li><li>f-strings let you drop a variable straight into a sentence, like "Hello, {name}!"</li><li>This is the first moment your program truly listens and responds to the player.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Seeing "TypeError: unsupported operand type(s) for +: 'int' and 'str'"? You forgot to convert input() text into a number first.</div></div>
-<div class="chips"><span class="chip">input()</span><span class="chip">f-strings</span><span class="chip">casting</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-6', 'Input, Interactivity &amp; Type Conversion')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-keyboard"></use></svg></div><div><p class="sub-eyebrow">Chapter 6 · Level 1.6</p><h3>Talking to the User</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>input() lets your program ask the player a question and wait for their answer — but that answer always arrives as plain text, even if it looks like a number.</p></div></div>
+<p class="sub-body">The <code class="mono">input()</code> function pauses your program to ask the player a question and wait for an answer — but it always hands that answer back as text, even when it looks like a number. Pairing <code class="mono">print()</code> with <code class="mono">input()</code> lets a program hold a real back-and-forth "conversation," and f-strings — written as <code class="mono">f"Hello, {name}!"</code> — let you drop a variable straight into a sentence without clunky joining. Wrapping the answer in <code class="mono">int()</code> or <code class="mono">float()</code>, called type conversion, is how you teach Python to actually do math with whatever the player typed, while <code class="mono">str()</code> goes the other direction, turning a number back into text. <span class="sub-body-extra">That's why converting the answer with int() or float() is such an important habit — it's the difference between Python reading "5" as a word versus a number it can actually add and subtract.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Wrap input() in int() or float() before doing any math with the answer.</li><li>f-strings let you drop a variable straight into a sentence, like "Hello, {name}!"</li><li>This is the first moment your program truly listens and responds to the player.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Seeing "TypeError: unsupported operand type(s) for +: 'int' and 'str'"? You forgot to convert input() text into a number first — the single most common beginner mistake.</div></div>
+<div class="chips"><span class="chip">input()</span><span class="chip">f-strings</span><span class="chip">int()</span><span class="chip">float()</span><span class="chip">str()</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-6', 'Talking to the User')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w1-7">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-play"></use></svg></div><div><p class="sub-eyebrow">Level 1.7 · Live Demo</p><h3>Build Your Digital Name Badge</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Watch input(), variables, and f-strings all work together in one tiny, real program you control.</p></div></div>
-<p class="sub-body">Everything from this level, working together. Type your name and press Run to see <code class="mono">input()</code>, variables, and f-strings talk back to you in real time.</p>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-calculator"></use></svg></div><div><p class="sub-eyebrow">Chapter 7 · Level 1.7</p><h3>Python Can Do Math</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Python's arithmetic operators handle addition, subtraction, multiplication, division, and two special beginner favorites: floor division and modulus.</p></div></div>
+<p class="sub-body">Python's core arithmetic operators are <code class="mono">+</code>, <code class="mono">-</code>, <code class="mono">*</code>, <code class="mono">/</code> (division, which always gives a decimal), <code class="mono">//</code> (floor division, which rounds down to a whole number), <code class="mono">%</code> (modulus, which returns only the remainder), and <code class="mono">**</code> (exponents, for powers). Python follows the same order of operations you learned in math class — parentheses first, then exponents, then multiplication/division, then addition/subtraction. Putting all of this together into a simple calculator that takes two numbers with <code class="mono">input()</code>, converts them, and prints a result is a perfect first mini project. <span class="sub-body-extra">Modulus (%) feels new to most beginners, but it's exactly how games check things like "every 3rd frame" or "is this number even" — even_number % 2 == 0.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>// gives a whole number answer; % gives you only the leftover remainder.</li><li>Order of operations in Python works exactly like it does in math class.</li><li>Every score system, health bar, and timer in a game runs on this same simple math.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>Modulus (%) is secretly one of the most useful tools in game design — it's how developers make something happen "every Nth time" without any extra counting logic.</div></div>
+<div class="chips"><span class="chip">+ - * /</span><span class="chip">// floor div</span><span class="chip">% modulus</span><span class="chip">** exponent</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-7', 'Python Can Do Math')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w1-8">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-play"></use></svg></div><div><p class="sub-eyebrow">Chapter 8 · Level 1.8 · Live Demo</p><h3>Mini Projects: Build Your Digital Name Badge</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Watch input(), variables, and f-strings all work together in one tiny, real program — then try four more mini projects that use everything from this week.</p></div></div>
+<p class="sub-body">Everything from this week, working together. Type your name and press Run to see <code class="mono">input()</code>, variables, and f-strings talk back to you in real time — then use the five mini projects below to practice print(), variables, input(), math, and conversion on your own.</p>
 <div class="panels">
 <div class="panel">
 <p class="panel-title"><svg class="icon"><use href="#i-play"></use></svg>Live Demo</p>
 <input class="term-input" id="nameInput" maxlength="16" placeholder="Type your name, then press Run"/>
 <div style="margin-top:16px;"><button class="btn" onclick="runHello()"><svg class="icon"><use href="#i-play"></use></svg>Run Code</button></div>
-<div class="terminal" id="termOut" style="margin-top:20px;"><span class="term-line" id="termText"></span><span class="cursor"> </span></div>
+<div class="terminal" id="termOut" style="margin-top:20px;"><span class="term-line" id="termText"></span><span class="cursor"> </span></div>
 </div>
 <div class="panel">
 <p class="panel-title"><svg class="icon"><use href="#i-code"></use></svg>The Code</p>
@@ -741,56 +779,84 @@ name = <span class="cf">input</span>(<span class="c2">"What's your name? "</span
 </div>
 </div>
 </div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-7', 'Build Your Digital Name Badge')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="proj-grid">
+<div class="proj-card"><div class="proj-num">1</div><h4>Hello World</h4><p>Print a greeting, your name, and one fun fact about yourself using three print() lines.</p></div>
+<div class="proj-card"><div class="proj-num">2</div><h4>Digital Name Badge</h4><p>Combine input(), variables, and f-strings into the badge you just built above.</p></div>
+<div class="proj-card"><div class="proj-num">3</div><h4>Age Calculator</h4><p>Ask for a birth year, convert it with int(), and calculate the player's current age.</p></div>
+<div class="proj-card"><div class="proj-num">4</div><h4>Mad Libs Story</h4><p>Collect a few silly words with input() and drop them into a pre-written story using f-strings.</p></div>
+<div class="proj-card"><div class="proj-num">5</div><h4>Simple Calculator</h4><p>Ask for two numbers and an operator, then print the result using this week's math operators.</p></div>
+</div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-8', 'Mini Projects: Build Your Digital Name Badge')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w1-9">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-book"></use></svg></div><div><p class="sub-eyebrow">End of Week 1</p><h3>Key Terms, Summary &amp; Homework</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A full recap of Week 1 — the words you now know, what you built, questions to check your understanding, and homework before Week 2.</p></div></div>
+<p class="sub-body">In one week, you went from "what even is programming?" to writing programs that talk, remember, and calculate. That's a real foundation — everything in Week 2 builds directly on the variables, input, and math you just practiced.</p>
+<p class="why-title" style="margin-top:0;"><svg class="icon sm"><use href="#i-star"></use></svg>Key Terms</p>
+<div class="term-grid">
+<div class="term-card"><b>Variable</b><span>A labeled pocket that stores a value for later use.</span></div>
+<div class="term-card"><b>Data Type</b><span>The category a value belongs to — string, integer, float, or boolean.</span></div>
+<div class="term-card"><b>print()</b><span>Displays text or values on the screen.</span></div>
+<div class="term-card"><b>input()</b><span>Pauses the program to collect text from the user.</span></div>
+<div class="term-card"><b>f-string</b><span>A shortcut for dropping variables directly into text.</span></div>
+<div class="term-card"><b>Type Conversion</b><span>Changing a value from one data type to another, e.g. int().</span></div>
+<div class="term-card"><b>Syntax Error</b><span>A mistake in Python's required grammar, like a missing colon.</span></div>
+<div class="term-card"><b>Comment</b><span>A note in code, starting with #, that Python ignores.</span></div>
+</div>
+<p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Review Questions</p>
+<ol class="review-list">
+<li>What's the difference between "coding" and "programming"?</li>
+<li>Name the four data types covered this week and give one example value for each.</li>
+<li>Why does int() need to be used on the result of input() before doing math with it?</li>
+<li>What do SyntaxError, NameError, and IndentationError each usually mean?</li>
+</ol>
+<p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Practice Exercises &amp; Homework</p>
+<ul class="why-matters">
+<li>Practice: Write a 3-line program that stores your name and favorite color in variables, then prints them in one f-string sentence.</li>
+<li>Practice: Use input() to ask for two numbers and print their sum, difference, and product.</li>
+<li>Homework: Finish any unfinished Mini Project from Chapter 8 and be ready to run it from PyCharm next class.</li>
+<li>Homework: Write down one error message you saw this week and what it taught you to fix.</li>
+</ul>
+<div class="callout"><svg class="icon sm"><use href="#i-info"></use></svg><div><b>Teacher Notes</b><br/>Focus formative checks on type conversion (Chapter 6) and reading error messages (Chapter 4) — these two habits are the most common blockers going into Week 2's logic-based chapters. Consider a quick verbal check: "What type does input() always return?"</div></div>
+<div class="chips"><span class="chip">recap</span><span class="chip">glossary</span><span class="chip">homework</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w1-9', 'End of Week 1 Recap')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 </div>
 </div>
 </section>
 <!-- ========== WEEK 2 ========== -->
 <section class="level" id="w2" style="--c:var(--w2);--cd:var(--w2-d)">
 <p class="level-eyebrow"><svg class="icon sm"><use href="#i-flag"></use></svg> Level 2 · Week 2</p>
-<div class="level-head"><div class="level-num">2</div><h2>Make Decisions</h2></div>
-<p class="level-blurb">Just like a traffic light, your game checks a value and reacts. This week your programs learn to compare, branch, repeat, and roll the dice.</p>
+<div class="level-head"><div class="level-num">2</div><h2>Teaching Python to Think</h2></div>
+<p class="level-blurb">Just like a traffic light, your game checks a value and reacts. This week your programs learn to compare, branch, repeat, roll the dice, and turn all of it into three playable mini games.</p>
 <div class="sublevels" data-level="w2">
 <div class="subtabs" role="tablist">
-<button class="subtab active" onclick="showSub(this,'w2-1')"><svg class="icon"><use href="#i-question"></use></svg><span class="subtab-n">2.1</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w2-2')"><svg class="icon"><use href="#i-scale"></use></svg><span class="subtab-n">2.2</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w2-3')"><svg class="icon"><use href="#i-signpost"></use></svg><span class="subtab-n">2.3</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w2-4')"><svg class="icon"><use href="#i-loop"></use></svg><span class="subtab-n">2.4</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w2-5')"><svg class="icon"><use href="#i-dice"></use></svg><span class="subtab-n">2.5</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w2-6')"><svg class="icon"><use href="#i-play"></use></svg><span class="subtab-n">2.6</span><span class="seen-dot"></span></button>
+<button class="subtab active" onclick="showSub(this,'w2-1')"><svg class="icon"><use href="#i-scale"></use></svg><span class="subtab-n">Ch 9</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w2-2')"><svg class="icon"><use href="#i-question"></use></svg><span class="subtab-n">Ch 10</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w2-3'); updateLight(50);"><svg class="icon"><use href="#i-signpost"></use></svg><span class="subtab-n">Ch 11</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w2-4')"><svg class="icon"><use href="#i-loop"></use></svg><span class="subtab-n">Ch 12</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w2-5')"><svg class="icon"><use href="#i-dice"></use></svg><span class="subtab-n">Ch 13</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w2-6')"><svg class="icon"><use href="#i-controller"></use></svg><span class="subtab-n">Ch 14</span><span class="seen-dot"></span></button>
 </div>
 <div class="subpanels">
+
 <div class="subpanel active" id="w2-1">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-question"></use></svg></div><div><p class="sub-eyebrow">Level 2.1</p><h3>What Is Logic?</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Logic is how a program answers a yes-or-no question, like "did the player press jump?" or "is health at zero?"</p></div></div>
-<p class="sub-body">Every meaningful moment in a game boils down to a yes-or-no question happening behind the scenes: did the player press jump, did the sword connect, is health at zero. Logic is how we teach Python to ask — and answer — exactly those kinds of True/False questions. <span class="sub-body-extra">Every interesting moment in a game — a jump, a hit, a game over — is really just one of these hidden True/False questions being answered behind the scenes.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Every choice a game makes comes down to a True or False question somewhere in the code.</li><li>Spotting these hidden questions is the first step to "thinking like a programmer."</li><li>This same idea (branching) powers everything from simple games to self-driving cars.</li></ul></div>
-<div class="chips"><span class="chip">True / False</span><span class="chip">branching</span><span class="chip">decisions</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-1', 'What Is Logic?')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-scale"></use></svg></div><div><p class="sub-eyebrow">Chapter 9 · Level 2.1</p><h3>Comparison Operators</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Comparison operators like ==, !=, &gt;, and &lt; let Python compare two values and decide if a statement is True or False.</p></div></div>
+<p class="sub-body">Comparison operators are how a program answers a yes-or-no question, like "did the player press jump?" or "is health at zero?" Python compares two values with <code class="mono">==</code> (equal to), <code class="mono">!=</code> (not equal to), <code class="mono">&gt;</code>, <code class="mono">&lt;</code>, <code class="mono">&gt;=</code>, and <code class="mono">&lt;=</code> — and every single comparison evaluates to exactly one of two values: <code class="mono">True</code> or <code class="mono">False</code>. This is the exact building block every decision in your game will be made from. <span class="sub-body-extra">Mixing up = (assigns a value) with == (compares two values) is the single most common beginner slip — Python will even throw an error to remind you.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>== compares two values; = assigns a value — mixing them up is a classic beginner error.</li><li>Every comparison in Python resolves to exactly True or False, nothing else.</li><li>These operators are the raw material every if statement is built from.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>if score = 10: crashes with a SyntaxError — you need if score == 10: to compare instead of assign.</div></div>
+<div class="chips"><span class="chip">==</span><span class="chip">!=</span><span class="chip">&gt; &lt;</span><span class="chip">True / False</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-1', 'Comparison Operators')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w2-2">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-scale"></use></svg></div><div><p class="sub-eyebrow">Level 2.2</p><h3>Comparison Operators</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Comparison operators like ==, !=, &gt;, and &lt; let Python compare two values and decide if a statement is True or False.</p></div></div>
-<p class="sub-body">To make a decision, Python first compares two values and gets back True or False. Operators like <code class="mono">==</code>, <code class="mono">!=</code>, <code class="mono">&gt;</code>, <code class="mono">&lt;</code>, <code class="mono">&gt;=</code>, and <code class="mono">&lt;=</code> are the building blocks of every comparison. <span class="sub-body-extra">Reading a comparison out loud as a question — "is health equal to zero?" — makes it much easier to picture what Python is actually checking.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>== compares ("are these equal?"), while a single = assigns (sets a value) — mixing them up is the #1 beginner mistake.</li><li>A comparison always returns exactly one of two answers: True or False.</li><li>These six operators show up in almost every decision your game will ever make.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>The #1 beginner slip in this entire course: writing <code class="mono">health = 0</code> (assigns) instead of <code class="mono">health == 0</code> (compares). Always double-check your equals signs!</div></div>
-<div class="chips"><span class="chip">== vs =</span><span class="chip">&gt; / &lt;</span><span class="chip">boolean result</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-2', 'Comparison Operators')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-question"></use></svg></div><div><p class="sub-eyebrow">Chapter 10 · Level 2.2</p><h3>Boolean Logic</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Boolean logic lets you combine multiple True/False questions into one bigger decision, using and, or, and not.</p></div></div>
+<p class="sub-body">Real decisions are rarely just one question — a door might only open if the player <i>has a key AND has enough energy</i>. Python's logical operators combine booleans: <code class="mono">and</code> needs both sides to be True, <code class="mono">or</code> needs just one side to be True, and <code class="mono">not</code> simply flips True to False (and back). Reading these combinations out loud in plain English is the fastest way to check your logic is actually doing what you think it's doing. <span class="sub-body-extra">A door that opens with has_key and not is_locked reads almost exactly like the English sentence describing the rule.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>and requires every condition to be True; or only needs one.</li><li>not flips a boolean, turning True into False and False into True.</li><li>Combining conditions is how games handle real rules like locked doors or team victories.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>Boolean logic is named after George Boole, a 19th-century mathematician who worked all of this out over 100 years before the first computer existed.</div></div>
+<div class="chips"><span class="chip">and</span><span class="chip">or</span><span class="chip">not</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-2', 'Boolean Logic')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w2-3">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-signpost"></use></svg></div><div><p class="sub-eyebrow">Level 2.3</p><h3>If, Elif, Else &amp; Logical Operators</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>if / elif / else lets your program choose between different paths, depending on which condition turns out to be true.</p></div></div>
-<p class="sub-body"><code class="mono">if / elif / else</code> lets a program follow different paths depending on which condition is true, checked top to bottom until one matches, then skipping the rest. Combine multiple checks at once with <code class="mono">and</code>, <code class="mono">or</code>, and <code class="mono">not</code> — the exact tools behind rules like "attack if has_sword or has_bow." <span class="sub-body-extra">Python checks each condition in order from top to bottom and stops the moment it finds one that's true, skipping everything below it.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Python checks conditions top to bottom and stops at the first match.</li><li>and, or, and not let you combine multiple checks into one smart rule.</li><li>Indentation (spacing) is how Python knows exactly which lines belong to which condition.</li></ul></div>
-<div class="chips"><span class="chip">if / elif / else</span><span class="chip">and / or / not</span><span class="chip">indentation</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-3', 'If, Elif, Else &amp; Logical Operators')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
-<div class="subpanel" id="w2-4">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-loop"></use></svg></div><div><p class="sub-eyebrow">Level 2.4</p><h3>Loops: While &amp; For</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Loops let your program repeat instructions automatically, instead of you copying and pasting the same code again and again.</p></div></div>
-<p class="sub-body">A <code class="mono">while</code> loop repeats for as long as a condition stays true; a <code class="mono">for</code> loop, often paired with <code class="mono">range()</code>, repeats a known number of times. A running game is really just one giant loop checking input and redrawing dozens of times a second — this is one of the most important ideas in the whole course. <span class="sub-body-extra">A while loop keeps going for as long as its condition stays true, while a for loop (often paired with range()) repeats a known, fixed number of times.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>while loops repeat "as long as" something stays true.</li><li>for loops with range() repeat a known number of times.</li><li>A running game is really just one giant loop, checking and redrawing dozens of times each second.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Forget to change your loop variable inside a <code class="mono">while</code> loop and you get an Infinite Loop — press Ctrl+C in the terminal to force it to stop.</div></div>
-<div class="chips"><span class="chip">while</span><span class="chip">for</span><span class="chip">range()</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-4', 'Loops: While &amp; For')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
-<div class="subpanel" id="w2-5">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-dice"></use></svg></div><div><p class="sub-eyebrow">Level 2.5</p><h3>The Random Module</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>The random module lets your game roll dice, shuffle loot, and move enemies unpredictably, so it never feels the same twice.</p></div></div>
-<p class="sub-body">A game that behaves the same way every time gets boring fast. Python's <code class="mono">random</code> module adds dice rolls, shuffled loot, and wandering enemies with tools like <code class="mono">random.randint()</code> and <code class="mono">random.choice()</code> — imported with a single line. <span class="sub-body-extra">A single import random line unlocks a whole toolbox of chance-based tricks that would be nearly impossible to fake by hand.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>import random unlocks tools like randint() and choice().</li><li>Unpredictability is exactly what keeps a game fun to replay.</li><li>Computers don't generate true randomness — they use clever formulas that just look random to us.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>True randomness is surprisingly hard for computers — most "random" numbers in games are "pseudo-random," calculated by a formula that just looks random to us.</div></div>
-<div class="chips"><span class="chip">import random</span><span class="chip">randint()</span><span class="chip">choice()</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-5', 'The Random Module')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
-<div class="subpanel" id="w2-6">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-play"></use></svg></div><div><p class="sub-eyebrow">Level 2.6 · Live Demo</p><h3>Health Light Simulator</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Drag the health slider and watch the matching if / elif / else code react instantly, in real time.</p></div></div>
-<p class="sub-body">Drag the health bar and watch the traffic light — and the matching <code class="mono">if / elif / else</code> code — react instantly.</p>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-signpost"></use></svg></div><div><p class="sub-eyebrow">Chapter 11 · Level 2.3 · Live Demo</p><h3>If, Elif, Else &amp; the Health Light Simulator</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>if / elif / else lets your program choose between different paths depending on which condition turns out to be true — drag the health bar below and watch it react live.</p></div></div>
+<p class="sub-body"><code class="mono">if / elif / else</code> lets your program choose between different paths, depending on which condition turns out to be true — Python checks each one top to bottom and runs only the first branch that matches. Drag the health bar below and watch the traffic light — and the matching code — react instantly, in real time.</p>
+<div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Python checks each condition top to bottom and stops at the first True one.</li><li>else always catches whatever didn't match any condition above it.</li><li>This exact pattern decides win/lose states, dialogue choices, and enemy behavior in real games.</li></ul></div>
 <div class="panels">
 <div class="panel">
 <p class="panel-title"><svg class="icon"><use href="#i-play"></use></svg>Drag the health bar</p>
@@ -810,59 +876,102 @@ name = <span class="cf">input</span>(<span class="c2">"What's your name? "</span
 </div>
 <div class="code" id="w2code">
 <span class="c1">if</span> health &lt;= <span class="c3">0</span>:<br/>
-  <span class="cf">print</span>(<span class="c2">"Game Over!"</span>) <span class="cm" id="markRed" style="transition:0.2s;">←</span><br/>
+  <span class="cf">print</span>(<span class="c2">"Game Over!"</span>) <span class="cm" id="markRed" style="transition:0.2s;">←</span><br/>
 <span class="c1">elif</span> health &lt; <span class="c3">30</span>:<br/>
-  <span class="cf">print</span>(<span class="c2">"Low health!"</span>) <span class="cm" id="markYellow" style="transition:0.2s;">←</span><br/>
+  <span class="cf">print</span>(<span class="c2">"Low health!"</span>) <span class="cm" id="markYellow" style="transition:0.2s;">←</span><br/>
 <span class="c1">else</span>:<br/>
-  <span class="cf">print</span>(<span class="c2">"Healthy!"</span>) <span class="cm" id="markGreen" style="transition:0.2s;">←</span>
+  <span class="cf">print</span>(<span class="c2">"Healthy!"</span>) <span class="cm" id="markGreen" style="transition:0.2s;">←</span>
 </div>
 </div>
 </div>
 </div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-6', 'Health Light Simulator')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="chips"><span class="chip">if</span><span class="chip">elif</span><span class="chip">else</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-3', 'If, Elif, Else &amp; the Health Light Simulator')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w2-4">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-loop"></use></svg></div><div><p class="sub-eyebrow">Chapter 12 · Level 2.4</p><h3>Loops: While &amp; For</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Loops let your program repeat instructions automatically — while repeats until a condition changes, for repeats a set number of times.</p></div></div>
+<p class="sub-body">Loops let your program repeat instructions automatically, instead of you copying and pasting the same code again and again. A <code class="mono">while</code> loop repeats as long as a condition stays True — perfect for "keep playing until the player quits." A <code class="mono">for</code> loop repeats a set number of times, often over <code class="mono">range()</code> — perfect for "roll the dice 5 times." Inside either loop, <code class="mono">break</code> exits immediately, and <code class="mono">continue</code> skips straight to the next repeat. <span class="sub-body-extra">Every game loop you'll build in Week 4 is really just a while loop that never intends to stop until the player says so.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Use while when you don't know how many times you'll repeat; use for when you do.</li><li>break stops a loop immediately; continue skips to the next round.</li><li>A while loop with no way to become False runs forever — this is called an infinite loop.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Program frozen and not responding? You likely wrote an infinite loop — a while condition that never has the chance to become False.</div></div>
+<div class="chips"><span class="chip">while</span><span class="chip">for</span><span class="chip">break</span><span class="chip">continue</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-4', 'Loops: While &amp; For')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w2-5">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-dice"></use></svg></div><div><p class="sub-eyebrow">Chapter 13 · Level 2.5</p><h3>The Random Module</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>The random module lets your game roll dice, shuffle loot, and move enemies unpredictably, so it never feels the same twice.</p></div></div>
+<p class="sub-body">A game that behaves the same way every time gets boring fast. Python's <code class="mono">random</code> module adds dice rolls, shuffled loot, and wandering enemies with tools like <code class="mono">random.randint(1, 6)</code> for a random whole number in a range and <code class="mono">random.choice(["rock","paper","scissors"])</code> for picking one item from a list — both unlocked with a single <code class="mono">import random</code>. <span class="sub-body-extra">A single import random line unlocks a whole toolbox of chance-based tricks that would be nearly impossible to fake by hand.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>import random unlocks tools like randint() and choice().</li><li>Unpredictability is exactly what keeps a game fun to replay.</li><li>Computers don't generate true randomness — they use clever formulas that just look random to us.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>True randomness is surprisingly hard for computers — most "random" numbers in games are "pseudo-random," calculated by a formula that just looks random to us.</div></div>
+<div class="chips"><span class="chip">import random</span><span class="chip">randint()</span><span class="chip">choice()</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-5', 'The Random Module')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w2-6">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-controller"></use></svg></div><div><p class="sub-eyebrow">Chapter 14 · Level 2.6</p><h3>Mini Games: Put It All Together</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Three classic beginner games — Number Guessing, Rock Paper Scissors, and a Quiz Game — combine everything from this week into real, playable programs.</p></div></div>
+<p class="sub-body">This week's three mini games each combine comparisons, booleans, if/elif/else, loops, and random into one finished program. Build them in order — each one reuses a trick from the last.</p>
+<div class="proj-grid">
+<div class="proj-card"><div class="proj-num">1</div><h4>Number Guessing Game</h4><p>Pick a random.randint() secret number, then loop with while, using if/elif/else to say "too high" or "too low" until the player guesses right.</p></div>
+<div class="proj-card"><div class="proj-num">2</div><h4>Rock, Paper, Scissors</h4><p>Use random.choice() for the computer's move, then compare it to the player's input() with if/elif/else to decide the winner.</p></div>
+<div class="proj-card"><div class="proj-num">3</div><h4>Quiz Game</h4><p>Loop through a list of questions with for, track a score variable, and print a final result using comparisons and booleans.</p></div>
+</div>
+<div class="code-wrap" style="max-width:760px;">
+<div class="code-header">
+<span class="mac-r"></span><span class="mac-y"></span><span class="mac-g"></span>
+</div>
+<div class="code">
+<span class="c1">import</span> random<br/>
+secret = random.randint(<span class="c3">1</span>, <span class="c3">20</span>)<br/>
+<span class="c1">while</span> <span class="c3">True</span>:<br/>
+  guess = <span class="cf">int</span>(<span class="cf">input</span>(<span class="c2">"Guess a number 1-20: "</span>))<br/>
+  <span class="c1">if</span> guess == secret:<br/>
+    <span class="cf">print</span>(<span class="c2">"You got it!"</span>); <span class="c1">break</span><br/>
+  <span class="c1">elif</span> guess &lt; secret:<br/>
+    <span class="cf">print</span>(<span class="c2">"Too low!"</span>)<br/>
+  <span class="c1">else</span>:<br/>
+    <span class="cf">print</span>(<span class="c2">"Too high!"</span>)
+</div>
+</div>
+<div class="chips"><span class="chip">number guessing</span><span class="chip">rock paper scissors</span><span class="chip">quiz game</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w2-6', 'Mini Games: Put It All Together')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 </div>
 </div>
 </section>
 <!-- ========== WEEK 3 ========== -->
 <section class="level" id="w3" style="--c:var(--w3);--cd:var(--w3-d)">
 <p class="level-eyebrow"><svg class="icon sm"><use href="#i-flag"></use></svg> Level 3 · Week 3</p>
-<div class="level-head"><div class="level-num">3</div><h2>Draw &amp; Organize</h2></div>
-<p class="level-blurb">The <code>turtle</code> module is a robot artist: tell it to walk and turn, and it leaves a trail. This week you'll organize your code into reusable functions and finally start drawing on screen.</p>
+<div class="level-head"><div class="level-num">3</div><h2>Bringing Your Code to Life</h2></div>
+<p class="level-blurb">The <code>turtle</code> module is a robot artist: tell it to walk and turn, and it leaves a trail. This week you'll organize your code into reusable functions, manage game data with lists and dictionaries, and finally get something moving on screen.</p>
 <div class="sublevels" data-level="w3">
 <div class="subtabs" role="tablist">
-<button class="subtab active" onclick="showSub(this,'w3-1')"><svg class="icon"><use href="#i-book"></use></svg><span class="subtab-n">3.1</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w3-2')"><svg class="icon"><use href="#i-list"></use></svg><span class="subtab-n">3.2</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w3-3')"><svg class="icon"><use href="#i-pen"></use></svg><span class="subtab-n">3.3</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w3-4')"><svg class="icon"><use href="#i-keyboard"></use></svg><span class="subtab-n">3.4</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w3-5'); replayTurtle();"><svg class="icon"><use href="#i-play"></use></svg><span class="subtab-n">3.5</span><span class="seen-dot"></span></button>
+<button class="subtab active" onclick="showSub(this,'w3-1')"><svg class="icon"><use href="#i-book"></use></svg><span class="subtab-n">Ch 15-17</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w3-2')"><svg class="icon"><use href="#i-list"></use></svg><span class="subtab-n">Ch 18-19</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w3-3')"><svg class="icon"><use href="#i-pen"></use></svg><span class="subtab-n">Ch 20-21</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w3-4'); replayTurtle();"><svg class="icon"><use href="#i-play"></use></svg><span class="subtab-n">Ch 22-23</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w3-5')"><svg class="icon"><use href="#i-keyboard"></use></svg><span class="subtab-n">Ch 24</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w3-6')"><svg class="icon"><use href="#i-controller"></use></svg><span class="subtab-n">Project</span><span class="seen-dot"></span></button>
 </div>
 <div class="subpanels">
+
 <div class="subpanel active" id="w3-1">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-book"></use></svg></div><div><p class="sub-eyebrow">Level 3.1</p><h3>Functions: Recipes for Code</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A function is a reusable recipe for a task — write the steps once with def, then call it by name any time you need that job done again.</p></div></div>
-<p class="sub-body">A function is a named, reusable recipe for a block of code — write it once with <code class="mono">def</code>, then call it by name anywhere you need that exact task done again instead of copy-pasting. Parameters are the ingredients it needs, and <code class="mono">return</code> hands back the finished result. <span class="sub-body-extra">Parameters are the ingredients you hand the function each time you call it, and return is how the function hands you back a finished result.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>def starts a function; return sends back a result.</li><li>Parameters let one function handle many different situations.</li><li>Huge games — even Minecraft — are organized out of small, well-named functions working together.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>Huge games like Minecraft are organized almost entirely out of small, well-named functions working together, just like <code class="mono">level_up()</code>.</div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-book"></use></svg></div><div><p class="sub-eyebrow">Chapters 15–17 · Level 3.1</p><h3>Functions, Parameters &amp; Return Values</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A function is a reusable recipe for a task — write the steps once with def, feed it ingredients with parameters, and get a finished result back with return.</p></div></div>
+<p class="sub-body">A function is a named, reusable recipe for a block of code — write it once with <code class="mono">def</code>, then call it by name anywhere you need that exact task done again instead of copy-pasting. Parameters are the ingredients you hand the function each time you call it, written inside the parentheses, like <code class="mono">def heal(amount):</code>. And <code class="mono">return</code> is how the function hands you back a finished result, so you can store it in a variable and use it elsewhere in your program. <span class="sub-body-extra">Parameters let a single function handle many different situations — heal(10) and heal(50) run the exact same recipe with different ingredients.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>def starts a function; return sends back a result you can actually use.</li><li>Parameters let one function handle many different situations.</li><li>Huge games — even Minecraft — are organized out of small, well-named functions working together.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>A function that print()s an answer but doesn't return it will hand back None if you try to store its result in a variable — return and print are not the same thing.</div></div>
 <div class="chips"><span class="chip">def</span><span class="chip">parameters</span><span class="chip">return</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-1', 'Functions: Recipes for Code')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-1', 'Functions, Parameters &amp; Return Values')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w3-2">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-list"></use></svg></div><div><p class="sub-eyebrow">Level 3.2</p><h3>Lists &amp; Dictionaries: Organizing Game Data</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A list stores items in order, starting at position 0; a dictionary stores items by a name you choose instead of a position.</p></div></div>
-<p class="sub-body">A list stores items in order, accessed by position starting at 0 — perfect for an inventory. A dictionary stores items by a descriptive key instead of a position, which is why stats like health and speed read far more clearly as <code class="mono">player_stats["health"]</code> than as a numbered slot. <span class="sub-body-extra">Use a list when order matters, like an inventory, and a dictionary when a clear label matters more, like player_stats["health"] instead of a numbered slot.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Use a list for things like an inventory, where the order matters.</li><li>Use a dictionary for stats like health or speed so your code reads clearly.</li><li>Reaching for a position that doesn't exist causes an IndexError.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>A 3-item list only has valid indexes 0, 1, and 2 — reaching for index 3 crashes with an IndexError, because there is no fourth item.</div></div>
-<div class="chips"><span class="chip">list[]</span><span class="chip">dict{}</span><span class="chip">index</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-2', 'Lists &amp; Dictionaries: Organizing Game Data')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-list"></use></svg></div><div><p class="sub-eyebrow">Chapters 18–19 · Level 3.2</p><h3>Lists &amp; Dictionaries: Organizing Game Data</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A list stores items in order, starting at position 0; a dictionary stores items by a name you choose instead of a position.</p></div></div>
+<p class="sub-body">A list, written like <code class="mono">inventory = ["sword", "shield", "potion"]</code>, stores items in order, starting at position 0 — so <code class="mono">inventory[0]</code> is "sword." A dictionary, written like <code class="mono">player = {"name": "Alex", "hp": 100}</code>, stores items by a name you choose, called a key, instead of a position — so <code class="mono">player["hp"]</code> instantly gets 100. Together, lists and dictionaries are how real games organize everything from a player's inventory to an entire level's enemy data. <span class="sub-body-extra">Reach for a list when order matters (a queue of enemies), and a dictionary when named lookup matters (one player's stats).</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Lists keep order and are accessed by position, starting at 0.</li><li>Dictionaries are accessed by a key name instead of a position.</li><li>Almost every piece of game data — inventories, stats, high scores — lives in one of these two structures.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>Python lists start counting at 0, not 1 — so a 3-item list's last item is at position 2, a detail that trips up nearly every new programmer at least once.</div></div>
+<div class="chips"><span class="chip">list[]</span><span class="chip">dict{}</span><span class="chip">index 0</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-2', 'Lists &amp; Dictionaries')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w3-3">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-pen"></use></svg></div><div><p class="sub-eyebrow">Level 3.3</p><h3>Introduction to Turtle Graphics</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>The turtle module hands you a digital pen you can steer around the screen to draw shapes and pictures with code.</p></div></div>
-<p class="sub-body">The built-in <code class="mono">turtle</code> module hands you a digital pen that moves and draws inside its own window — <code class="mono">forward()</code>, <code class="mono">left()</code>, and <code class="mono">right()</code> steer it exactly like giving directions to a real turtle. This is the moment your games stop being text and start being visual. <span class="sub-body-extra">forward(), left(), and right() steer the turtle exactly like giving directions to a real one — walk this far, then turn this many degrees.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>forward(), left(), and right() move and turn the turtle like giving directions.</li><li>This is the exact moment your programs stop being text and start being visual.</li><li>Everything drawn on screen is really just the turtle following your step-by-step instructions.</li></ul></div>
-<div class="chips"><span class="chip">turtle.Turtle()</span><span class="chip">forward()</span><span class="chip">left() / right()</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-3', 'Introduction to Turtle Graphics')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-pen"></use></svg></div><div><p class="sub-eyebrow">Chapters 20–21 · Level 3.3</p><h3>Importing Modules &amp; Introduction to Turtle Graphics</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A module is a toolbox of code someone else already wrote — import turtle hands you a digital pen you can steer around the screen with code.</p></div></div>
+<p class="sub-body">You've already used one module — <code class="mono">random</code> — but the idea behind <code class="mono">import</code> is bigger: it lets you pull in entire toolboxes of pre-written code instead of building everything from scratch. This week's toolbox is <code class="mono">turtle</code>, which hands you a digital pen you can steer around the screen with simple commands like <code class="mono">forward()</code>, <code class="mono">left()</code>, and <code class="mono">right()</code>, drawing a trail wherever it goes. <span class="sub-body-extra">Every professional Python program leans on imported modules — nobody writes graphics, math, or randomness completely from scratch.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>import unlocks pre-written code so you never have to build everything from zero.</li><li>turtle.forward() and turtle.left() are the two commands nearly every drawing starts from.</li><li>The same import pattern you learned with random applies to every module in Python.</li></ul></div>
+<div class="chips"><span class="chip">import turtle</span><span class="chip">forward()</span><span class="chip">left() / right()</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-3', 'Importing Modules &amp; Turtle Graphics')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w3-4">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-keyboard"></use></svg></div><div><p class="sub-eyebrow">Level 3.4</p><h3>Keyboard Controls &amp; Event Handling</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Event handling lets your game "listen" for a key press and instantly run the matching function, like Up arrow → move_up().</p></div></div>
-<p class="sub-body"><code class="mono">screen.listen()</code> tells your game window to pay attention to the keyboard, and <code class="mono">screen.onkey()</code> connects a specific key to a specific function — press Up, run <code class="mono">move_up()</code>. This pattern, called event handling, is exactly how every professional game responds to a controller or touchscreen. <span class="sub-body-extra">This same listen-then-react pattern is exactly how every professional game responds to a controller, keyboard, or touchscreen.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>screen.listen() turns on the game's ears; screen.onkey() connects a key to an action.</li><li>This pattern, called event handling, works the same way in every real game you've ever played.</li><li>Click the game window once first, so it can actually hear your keyboard.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Arrow keys doing nothing? Click once directly on the game window first — it needs to be the active focus to catch key presses.</div></div>
-<div class="chips"><span class="chip">screen.listen()</span><span class="chip">onkey()</span><span class="chip">event handling</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-4', 'Keyboard Controls &amp; Event Handling')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
-<div class="subpanel" id="w3-5">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-play"></use></svg></div><div><p class="sub-eyebrow">Level 3.5 · Live Demo</p><h3>The Turtle Draws a Square</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Watch the turtle draw a square using one loop, four sides, and four 90° turns.</p></div></div>
-<p class="sub-body">Four sides, one loop running four times — watch the path draw itself, then try swapping <code class="mono">range(4)</code> for <code class="mono">range(6)</code> to imagine a hexagon.</p>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-play"></use></svg></div><div><p class="sub-eyebrow">Chapters 22–23 · Level 3.4 · Live Demo</p><h3>Drawing Shapes &amp; Moving Objects</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Watch the turtle draw a square using one loop, four sides, and four 90° turns — the exact same forward/turn pattern you'll use to move a character.</p></div></div>
+<p class="sub-body">Four sides, one loop running four times — watch the path draw itself, then try swapping <code class="mono">range(4)</code> for <code class="mono">range(6)</code> to imagine a hexagon. Moving objects works the same way: instead of drawing a shape once, you call the same <code class="mono">forward()</code> and turn commands repeatedly inside a loop, updating position frame by frame — the very same idea you'll use to move a real, controllable character in the next chapter.</p>
 <div class="panels">
 <div class="panel">
 <p class="panel-title"><svg class="icon"><use href="#i-play"></use></svg>Live Demo</p>
@@ -881,49 +990,88 @@ name = <span class="cf">input</span>(<span class="c2">"What's your name? "</span
 </div>
 <div class="code">
 <span class="c1">for</span> side <span class="c1">in</span> <span class="cf">range</span>(<span class="c3">4</span>):<br/>
-  player.forward(<span class="c3">100</span>)<br/>
-  player.left(<span class="c3">90</span>)
+  player.forward(<span class="c3">100</span>)<br/>
+  player.left(<span class="c3">90</span>)
               </div>
 </div>
 <p style="color:var(--ink-dim); font-size:13px; margin-top:16px;">4 sides → loop runs 4 times. Change <span class="mono">range(4)</span> to <span class="mono">range(6)</span> for a hexagon!</p>
 </div>
 </div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-5', 'The Turtle Draws a Square')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="chips"><span class="chip">range(4)</span><span class="chip">forward()</span><span class="chip">movement loop</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-4', 'Drawing Shapes &amp; Moving Objects')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w3-5">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-keyboard"></use></svg></div><div><p class="sub-eyebrow">Chapter 24 · Level 3.5</p><h3>Keyboard Controls &amp; Event Handling</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Event handling lets your game "listen" for a key press and instantly run the matching function, like Up arrow → move_up().</p></div></div>
+<p class="sub-body"><code class="mono">screen.listen()</code> tells your game window to pay attention to the keyboard, and <code class="mono">screen.onkey()</code> connects a specific key to a specific function — press Up, run <code class="mono">move_up()</code>. This pattern, called event handling, is exactly how every professional game responds to a controller or touchscreen. <span class="sub-body-extra">This same listen-then-react pattern is exactly how every professional game responds to a controller, keyboard, or touchscreen.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>screen.listen() turns on the game's ears; screen.onkey() connects a key to an action.</li><li>This pattern, called event handling, works the same way in every real game you've ever played.</li><li>Click the game window once first, so it can actually hear your keyboard.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Arrow keys doing nothing? Click once directly on the game window first — it needs to be the active focus to catch key presses.</div></div>
+<div class="chips"><span class="chip">screen.listen()</span><span class="chip">onkey()</span><span class="chip">event handling</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-5', 'Keyboard Controls &amp; Event Handling')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w3-6">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-controller"></use></svg></div><div><p class="sub-eyebrow">Week 3 Project</p><h3>Build a Controllable Character</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Combine everything from this week — functions, turtle graphics, and keyboard controls — into one character you can drive around the screen with the arrow keys.</p></div></div>
+<p class="sub-body">This week's capstone: write four small functions — <code class="mono">move_up()</code>, <code class="mono">move_down()</code>, <code class="mono">move_left()</code>, <code class="mono">move_right()</code> — each moving your turtle a fixed distance in one direction. Connect all four to the arrow keys with <code class="mono">screen.onkey()</code>, and you'll have a fully controllable character: the exact foundation every game in Week 4 builds on top of.</p>
+<div class="code-wrap" style="max-width:760px;">
+<div class="code-header">
+<span class="mac-r"></span><span class="mac-y"></span><span class="mac-g"></span>
+</div>
+<div class="code">
+<span class="c1">def</span> move_up():<br/>
+  player.sety(player.ycor() + <span class="c3">20</span>)<br/>
+<br/>
+screen.listen()<br/>
+screen.onkey(move_up, <span class="c2">"Up"</span>)
+</div>
+</div>
+<div class="chips"><span class="chip">functions</span><span class="chip">turtle</span><span class="chip">event handling</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w3-6', 'Build a Controllable Character')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 </div>
 </div>
 </section>
 <!-- ========== WEEK 4 ========== -->
 <section class="level" id="w4" style="--c:var(--w4);--cd:var(--w4-d)">
 <p class="level-eyebrow"><svg class="icon sm"><use href="#i-flag"></use></svg> Level 4 · Week 4</p>
-<div class="level-head"><div class="level-num">4</div><h2>Build the Game</h2></div>
-<p class="level-blurb">Every game repeats: check input → move things → check if they touched → show score. This week those four ideas become one real, playable game.</p>
+<div class="level-head"><div class="level-num">4</div><h2>Building Your First Real Game</h2></div>
+<p class="level-blurb">Every game repeats: check input → move things → check if they touched → show score. This week those ideas — plus lives, timers, and win/lose states — become one real, playable game.</p>
 <div class="sublevels" data-level="w4">
 <div class="subtabs" role="tablist">
-<button class="subtab active" onclick="showSub(this,'w4-1')"><svg class="icon"><use href="#i-heart-pulse"></use></svg><span class="subtab-n">4.1</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w4-2')"><svg class="icon"><use href="#i-target"></use></svg><span class="subtab-n">4.2</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w4-3')"><svg class="icon"><use href="#i-scoreboard"></use></svg><span class="subtab-n">4.3</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w4-4'); startGameIfNeeded();"><svg class="icon"><use href="#i-play"></use></svg><span class="subtab-n">4.4</span><span class="seen-dot"></span></button>
+<button class="subtab active" onclick="showSub(this,'w4-1')"><svg class="icon"><use href="#i-heart-pulse"></use></svg><span class="subtab-n">Ch 25-26</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w4-2')"><svg class="icon"><use href="#i-target"></use></svg><span class="subtab-n">Ch 27</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w4-3')"><svg class="icon"><use href="#i-scoreboard"></use></svg><span class="subtab-n">Ch 28-30</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w4-4')"><svg class="icon"><use href="#i-flag"></use></svg><span class="subtab-n">Ch 31</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w4-5'); startGameIfNeeded();"><svg class="icon"><use href="#i-play"></use></svg><span class="subtab-n">Live Demo</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w4-6')"><svg class="icon"><use href="#i-controller"></use></svg><span class="subtab-n">Projects</span><span class="seen-dot"></span></button>
 </div>
 <div class="subpanels">
+
 <div class="subpanel active" id="w4-1">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-heart-pulse"></use></svg></div><div><p class="sub-eyebrow">Level 4.1</p><h3>The Game Loop: The Heartbeat of Every Game</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>The game loop is the heartbeat of every video game — check input, update everything, redraw the screen, then do it all again, dozens of times a second.</p></div></div>
-<p class="sub-body">Every video game runs on a game loop — a <code class="mono">while</code> loop that checks input, updates positions and scores, then redraws the screen, dozens of times a second. Turning off turtle's automatic redraw with <code class="mono">screen.tracer(0)</code> and calling <code class="mono">screen.update()</code> yourself keeps that loop smooth instead of flickery. <span class="sub-body-extra">Turning off turtle's automatic redraw with screen.tracer(0) and calling screen.update() yourself is what keeps that loop smooth instead of flickery.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>screen.tracer(0) turns off automatic redrawing so you control it yourself.</li><li>screen.update() redraws the screen exactly when you want it to.</li><li>Professional games usually aim for 30 or 60 loops (frames) every single second.</li></ul></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-heart-pulse"></use></svg></div><div><p class="sub-eyebrow">Chapters 25–26 · Level 4.1</p><h3>The Game Loop &amp; Animation</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>The game loop is the heartbeat of every video game — check input, update everything, redraw the screen, then do it all again, dozens of times a second.</p></div></div>
+<p class="sub-body">Every video game runs on a game loop — a <code class="mono">while</code> loop that checks input, updates positions and scores, then redraws the screen, dozens of times a second. Turning off turtle's automatic redraw with <code class="mono">screen.tracer(0)</code> and calling <code class="mono">screen.update()</code> yourself keeps that loop smooth instead of flickery. Animation is simply this loop changing an object's position or image by a tiny amount every single pass, fast enough that our eyes read it as smooth motion. <span class="sub-body-extra">Turning off turtle's automatic redraw with screen.tracer(0) and calling screen.update() yourself is what keeps that loop smooth instead of flickery.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>screen.tracer(0) turns off automatic redrawing so you control it yourself.</li><li>screen.update() redraws the screen exactly when you want it to.</li><li>Professional games usually aim for 30 or 60 loops (frames) every single second.</li></ul></div>
 <div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>Professional games usually aim for 30 or 60 "frames per second" — 30 or 60 full passes through the game loop, every single second.</div></div>
-<div class="chips"><span class="chip">while True</span><span class="chip">tracer(0)</span><span class="chip">update()</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-1', 'The Game Loop: The Heartbeat of Every Game')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="chips"><span class="chip">while True</span><span class="chip">tracer(0)</span><span class="chip">update()</span><span class="chip">animation</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-1', 'The Game Loop &amp; Animation')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w4-2">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-target"></use></svg></div><div><p class="sub-eyebrow">Level 4.2</p><h3>Collision Detection: Did They Touch?</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Collision detection is how a game decides two things have "touched" — almost always by measuring the distance between them.</p></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-target"></use></svg></div><div><p class="sub-eyebrow">Chapter 27 · Level 4.2</p><h3>Collision Detection: Did They Touch?</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Collision detection is how a game decides two things have "touched" — almost always by measuring the distance between them.</p></div></div>
 <p class="sub-body">Games decide whether two objects have "touched" almost always by measuring the distance between them — close enough counts as a collision. Turtle's built-in <code class="mono">.distance()</code> method does that math instantly, so a simple <code class="mono">if distance &lt; 20</code> check is often all a hit detection needs. <span class="sub-body-extra">A simple check like if distance &lt; 20 is often all it takes, because turtle's built-in .distance() method already does the hard math for you.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>.distance() instantly calculates how far apart two turtles are.</li><li>A simple if distance &lt; 20 check is often all a hit detection needs.</li><li>Finding the right threshold number takes a little testing and tweaking.</li></ul></div>
 <div class="chips"><span class="chip">.distance()</span><span class="chip">collision</span><span class="chip">thresholds</span></div>
 <div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-2', 'Collision Detection: Did They Touch?')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w4-3">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-scoreboard"></use></svg></div><div><p class="sub-eyebrow">Level 4.3</p><h3>Scoring Systems &amp; On-Screen Text</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A visible on-screen score comes from a second, invisible turtle whose only job is writing text near the top of the screen.</p></div></div>
-<p class="sub-body">A real game needs a visible score, and the trick in turtle is a second, invisible pen-turtle whose only job is writing text near the top of the screen. Clearing that text with <code class="mono">pen.clear()</code> before every rewrite is essential, or old and new scores overlap into a mess. <span class="sub-body-extra">That invisible pen must clear its old text with pen.clear() before writing the new score, or the numbers pile up into an unreadable mess.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>pen.write() displays the score; hideturtle() keeps the pen itself invisible.</li><li>pen.clear() must run before every rewrite, or old and new scores overlap.</li><li>Visible feedback like a score is what makes a game feel alive and rewarding.</li></ul></div>
-<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Garbled, overlapping score text almost always means you forgot <code class="mono">pen.clear()</code> inside your <code class="mono">update_score()</code> function.</div></div>
-<div class="chips"><span class="chip">pen.write()</span><span class="chip">hideturtle()</span><span class="chip">pen.clear()</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-3', 'Scoring Systems &amp; On-Screen Text')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-scoreboard"></use></svg></div><div><p class="sub-eyebrow">Chapters 28–30 · Level 4.3</p><h3>Score, Lives &amp; Timers</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>A visible score, a lives counter, and an on-screen timer are what turn a moving shape into a game you can actually win or lose.</p></div></div>
+<p class="sub-body">A real game needs a visible score, and the trick in turtle is a second, invisible pen-turtle whose only job is writing text near the top of the screen with <code class="mono">pen.write()</code> — clearing it with <code class="mono">pen.clear()</code> before every rewrite is essential, or old and new scores overlap into a mess. A <b>lives</b> system works the same way: a variable like <code class="mono">lives = 3</code> counts down on every miss, and hitting zero ends the game. A <b>timer</b> is just another variable, counting up or down once per pass through the game loop, displayed the same way as score. <span class="sub-body-extra">Score, lives, and timers are really the same trick three times over: a variable, a rule for changing it, and pen.write() to show it.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>pen.write() displays text; pen.clear() must run first or old and new text overlap.</li><li>A lives variable that hits 0 is one of the simplest ways to end a game.</li><li>Visible feedback like a score, lives, or timer is what makes a game feel alive.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-bug"></use></svg><div><b>Debug Detective</b><br/>Garbled, overlapping score text almost always means you forgot pen.clear() inside your update_score() function.</div></div>
+<div class="chips"><span class="chip">pen.write()</span><span class="chip">lives</span><span class="chip">timer</span><span class="chip">pen.clear()</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-3', 'Score, Lives &amp; Timers')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w4-4">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-play"></use></svg></div><div><p class="sub-eyebrow">Level 4.4 · Live Demo</p><h3>Catch the Falling Apple</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Slide the paddle with the arrow buttons to catch the apple — the game loop, collision detection, and scoring, all working together live.</p></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-flag"></use></svg></div><div><p class="sub-eyebrow">Chapter 31 · Level 4.4</p><h3>Winning &amp; Losing: Game States</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Every finished game needs a clear moment where it decides the player has won or lost, and stops the loop to say so.</p></div></div>
+<p class="sub-body">A boolean like <code class="mono">game_over = False</code> is usually all it takes: the game loop keeps running <code class="mono">while not game_over</code>, and the moment your win or lose condition becomes True — lives hit 0, the timer runs out, or the goal is reached — you flip <code class="mono">game_over</code> to True and display a final message. <span class="sub-body-extra">Deciding your win/lose condition clearly, before you code it, is exactly the kind of planning real developers do on paper first.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>A single game_over boolean is often enough to control the entire loop.</li><li>Clear win/lose conditions are what make a game feel finished instead of unfinished.</li><li>This is the exact idea you'll use to build a proper Game Over screen in Week 5.</li></ul></div>
+<div class="chips"><span class="chip">game_over</span><span class="chip">win condition</span><span class="chip">lose condition</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-4', 'Winning &amp; Losing: Game States')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w4-5">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-play"></use></svg></div><div><p class="sub-eyebrow">Live Demo · Level 4.5</p><h3>Catch the Falling Apple</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Slide the paddle with the arrow buttons to catch the apple — the game loop, collision detection, and scoring, all working together live.</p></div></div>
 <p class="sub-body">Use ◀ ▶ to slide the paddle and catch the apple — a real-time example of the game loop, collision detection, and scoring all working together.</p>
 <div class="panels">
 <div class="panel">
@@ -946,60 +1094,93 @@ name = <span class="cf">input</span>(<span class="c2">"What's your name? "</span
 </div>
 <div class="code">
 <span class="c1">while</span> <span class="c3">True</span>:<br/>
-  apple.sety(apple.ycor() - <span class="c3">2</span>)<br/>
-  <span class="c1">if</span> apple.distance(player) &lt; <span class="c3">25</span>:<br/>
-    score += <span class="c3">10</span><br/>
-    apple.goto(random_x, top)
+  apple.sety(apple.ycor() - <span class="c3">2</span>)<br/>
+  <span class="c1">if</span> apple.distance(player) &lt; <span class="c3">25</span>:<br/>
+    score += <span class="c3">10</span><br/>
+    apple.goto(random_x, top)
               </div>
 </div>
 </div>
 </div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-4', 'Catch the Falling Apple')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="chips"><span class="chip">live demo</span><span class="chip">game loop</span><span class="chip">collision</span><span class="chip">scoring</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-5', 'Catch the Falling Apple')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w4-6">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-controller"></use></svg></div><div><p class="sub-eyebrow">Week 4 Projects</p><h3>More Projects: Maze Escape &amp; Snake (Guided)</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Beyond Catch the Apple, try a maze escape and a guided version of Snake — both built from this week's exact same toolkit.</p></div></div>
+<p class="sub-body">Once Catch the Apple feels comfortable, stretch further with these two guided builds — same game loop, same collision checks, same scoring pattern, applied to a new idea.</p>
+<div class="proj-grid">
+<div class="proj-card"><div class="proj-num">A</div><h4>Maze Escape</h4><p>Draw wall segments with turtle, move a character with keyboard controls, and use .distance() to detect wall collisions and a goal tile.</p></div>
+<div class="proj-card"><div class="proj-num">B</div><h4>Snake (Guided)</h4><p>Store the snake's body as a list of positions, grow it by one on each apple eaten, and end the game on a collision with itself or a wall.</p></div>
+</div>
+<div class="chips"><span class="chip">maze escape</span><span class="chip">snake</span><span class="chip">guided project</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w4-6', 'More Projects: Maze Escape &amp; Snake')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 </div>
 </div>
 </section>
 <!-- ========== WEEK 5 ========== -->
 <section class="level" id="w5" style="--c:var(--w5);--cd:var(--w5-d)">
 <p class="level-eyebrow"><svg class="icon sm"><use href="#i-flag"></use></svg> Level 5 · Week 5</p>
-<div class="level-head"><div class="level-num">5</div><h2>Ship It!</h2></div>
-<p class="level-blurb">Plan it, build it, squash the bugs, make it pretty, then show it off. This is the week your original game comes together and goes live.</p>
+<div class="level-head"><div class="level-num">5</div><h2>Create, Polish &amp; Showcase Your Game</h2></div>
+<p class="level-blurb">Plan it, build it, squash the bugs, make it pretty, then show it off. This is the week your original game comes together, gets a final showcase project, and goes live.</p>
 <div class="sublevels" data-level="w5">
 <div class="subtabs" role="tablist">
-<button class="subtab active" onclick="showSub(this,'w5-1')"><svg class="icon"><use href="#i-map"></use></svg><span class="subtab-n">5.1</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w5-2')"><svg class="icon"><use href="#i-bug"></use></svg><span class="subtab-n">5.2</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w5-3')"><svg class="icon"><use href="#i-sparkle"></use></svg><span class="subtab-n">5.3</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w5-4')"><svg class="icon"><use href="#i-megaphone"></use></svg><span class="subtab-n">5.4</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w5-5')"><svg class="icon"><use href="#i-rocket"></use></svg><span class="subtab-n">5.5</span><span class="seen-dot"></span></button>
-<button class="subtab" onclick="showSub(this,'w5-6')"><svg class="icon"><use href="#i-check"></use></svg><span class="subtab-n">5.6</span><span class="seen-dot"></span></button>
+<button class="subtab active" onclick="showSub(this,'w5-1')"><svg class="icon"><use href="#i-map"></use></svg><span class="subtab-n">Ch 32-33</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w5-2')"><svg class="icon"><use href="#i-bug"></use></svg><span class="subtab-n">Ch 34-36</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w5-3')"><svg class="icon"><use href="#i-sparkle"></use></svg><span class="subtab-n">Ch 37</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w5-4')"><svg class="icon"><use href="#i-megaphone"></use></svg><span class="subtab-n">Ch 38</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w5-5')"><svg class="icon"><use href="#i-controller"></use></svg><span class="subtab-n">Final Project</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w5-6')"><svg class="icon"><use href="#i-rocket"></use></svg><span class="subtab-n">Bonus</span><span class="seen-dot"></span></button>
+<button class="subtab" onclick="showSub(this,'w5-7')"><svg class="icon"><use href="#i-check"></use></svg><span class="subtab-n">Launch</span><span class="seen-dot"></span></button>
 </div>
 <div class="subpanels">
+
 <div class="subpanel active" id="w5-1">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-map"></use></svg></div><div><p class="sub-eyebrow">Level 5.1</p><h3>Planning Your Game (Storyboarding)</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Before writing any code, real developers storyboard their game on paper — sketching the idea, the goal, and how it's won or lost.</p></div></div>
-<p class="sub-body">Before writing a single line, real developers storyboard: sketching the core loop, the win/lose condition, and the overall scope on paper first. Keeping scope small and finishable beats an ambitious idea that never gets done. <span class="sub-body-extra">Keeping your first idea small and finishable beats an ambitious one that never actually gets built.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>A small, finishable idea beats a giant idea that never gets done.</li><li>Sketching first saves you from rewriting a lot of code later.</li><li>Every professional game starts life as a rough sketch on paper.</li></ul></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-map"></use></svg></div><div><p class="sub-eyebrow">Chapters 32–33 · Level 5.1</p><h3>Planning &amp; Storyboarding Your Game</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Before writing any code, real developers storyboard their game on paper — sketching the idea, the goal, and how it's won or lost.</p></div></div>
+<p class="sub-body">Before writing a single line, real developers storyboard: sketching the core loop, the win/lose condition, and the overall scope on paper first. A storyboard doesn't need to be fancy — a few boxes showing "start screen → gameplay → game over" is enough to catch problems before they cost you hours of code. Keeping scope small and finishable beats an ambitious idea that never gets done. <span class="sub-body-extra">Keeping your first idea small and finishable beats an ambitious one that never actually gets built.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>A small, finishable idea beats a giant idea that never gets done.</li><li>Sketching first saves you from rewriting a lot of code later.</li><li>Every professional game starts life as a rough sketch on paper.</li></ul></div>
 <div class="chips"><span class="chip">storyboard</span><span class="chip">core loop</span><span class="chip">scope</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-1', 'Planning Your Game (Storyboarding)')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-1', 'Planning &amp; Storyboarding Your Game')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w5-2">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-bug"></use></svg></div><div><p class="sub-eyebrow">Level 5.2</p><h3>Building &amp; Debugging</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Build your most important feature first, then add extras — and when something breaks, hunt the bug down calmly, like a detective.</p></div></div>
-<p class="sub-body">Build your core mechanic first, then layer features on top. When you get stuck, isolate the problem by commenting out code until it runs again, or explain your logic out loud — "rubber duck" debugging — and always save a working backup before trying anything risky. <span class="sub-body-extra">Commenting out sections of code until the program runs again is one of the fastest ways to narrow down exactly where a bug is hiding.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Comment out code to isolate exactly where a bug is hiding.</li><li>"Rubber duck" debugging — explaining your code out loud — often reveals the fix on its own.</li><li>Always save a working backup before trying something risky.</li></ul></div>
-<div class="chips"><span class="chip">isolate the bug</span><span class="chip">rubber duck it</span><span class="chip">backups</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-2', 'Building &amp; Debugging')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-bug"></use></svg></div><div><p class="sub-eyebrow">Chapters 34–36 · Level 5.2</p><h3>Writing, Testing &amp; Debugging Your Code</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Build your most important feature first, test it constantly as you go, and when something breaks, hunt the bug down calmly, like a detective.</p></div></div>
+<p class="sub-body">Build your core mechanic first, then layer features on top — writing the code for your storyboard one small, testable piece at a time. Testing means running your game after every meaningful change, not just once at the end, so you always know exactly which change caused a new problem. When you get stuck debugging, isolate the problem by commenting out code until it runs again, or explain your logic out loud — "rubber duck" debugging — and always save a working backup before trying anything risky. <span class="sub-body-extra">Commenting out sections of code until the program runs again is one of the fastest ways to narrow down exactly where a bug is hiding.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Testing after every small change makes it obvious which change caused a bug.</li><li>"Rubber duck" debugging — explaining your code out loud — often reveals the fix on its own.</li><li>Always save a working backup before trying something risky.</li></ul></div>
+<div class="callout"><svg class="icon sm"><use href="#i-lightbulb"></use></svg><div><b>Did You Know?</b><br/>"Rubber duck debugging" gets its name from a programmer who kept a literal rubber duck on his desk to explain code to, line by line, until the bug became obvious.</div></div>
+<div class="chips"><span class="chip">write in small pieces</span><span class="chip">test often</span><span class="chip">isolate the bug</span><span class="chip">rubber duck it</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-2', 'Writing, Testing &amp; Debugging Your Code')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w5-3">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-sparkle"></use></svg></div><div><p class="sub-eyebrow">Level 5.3</p><h3>Polishing the UI</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Small extra touches — a start screen, a game over screen, and difficulty that rises with the score — turn a working game into a finished, share-worthy one.</p></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-sparkle"></use></svg></div><div><p class="sub-eyebrow">Chapter 37 · Level 5.3</p><h3>Polishing the UI</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Small extra touches — a start screen, a game over screen, and difficulty that rises with the score — turn a working game into a finished, share-worthy one.</p></div></div>
 <p class="sub-body">A working game and a finished-feeling game are different things. A Game Over screen, a Start screen, thoughtful colors, and difficulty that rises with the score are what turn a school project into something you're proud to show your family. <span class="sub-body-extra">These finishing touches are exactly what separates a rough school project from a game you're genuinely proud to show your family.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Players notice polish before they notice clever code underneath.</li><li>A rising difficulty curve keeps players challenged instead of bored.</li><li>Small, thoughtful details show real craftsmanship.</li></ul></div>
 <div class="chips"><span class="chip">start screen</span><span class="chip">game over</span><span class="chip">difficulty curve</span></div>
 <div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-3', 'Polishing the UI')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w5-4">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-megaphone"></use></svg></div><div><p class="sub-eyebrow">Level 5.4</p><h3>Presentation Skills: Showing Off Like a Pro</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Presenting like a real developer means telling the story of your game — not just clicking play and hoping it looks good.</p></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-megaphone"></use></svg></div><div><p class="sub-eyebrow">Chapter 38 · Level 5.4</p><h3>Presentation Skills: Showing Off Like a Pro</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Presenting like a real developer means telling the story of your game — not just clicking play and hoping it looks good.</p></div></div>
 <p class="sub-body">Don't just hit play — tell a story: introduce the concept, do a live playthrough, share one bug you fixed, and share one feature you're proud of. Real developers present their process, not just their finished product. <span class="sub-body-extra">Introducing your idea, showing a live playthrough, and sharing one bug you fixed is exactly how professional developers demo their work.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>Introduce your idea before you demo it, so people know what to look for.</li><li>Share one bug you fixed and one feature you're proud of.</li><li>Being ready for questions shows you truly understand your own code.</li></ul></div>
 <div class="chips"><span class="chip">live playthrough</span><span class="chip">storytelling</span><span class="chip">Q&amp;A</span></div>
 <div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-4', 'Presentation Skills: Showing Off Like a Pro')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 <div class="subpanel" id="w5-5">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-rocket"></use></svg></div><div><p class="sub-eyebrow">Level 5.5</p><h3>Beyond This Course: Career Paths</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Planning, building, debugging, and presenting are the exact same skills used every day by real game developers, engineers, and scientists.</p></div></div>
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-controller"></use></svg></div><div><p class="sub-eyebrow">Final Project · Level 5.5</p><h3>Choose Your Game</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Pick one final game to plan, build, test, polish, and present — using every single skill from all five weeks.</p></div></div>
+<p class="sub-body">This is it — the project that pulls together everything from Code Quest. Choose one of the five options below, storyboard it, build it in small tested pieces, polish the UI, then present it using this week's chapters.</p>
+<div class="proj-grid">
+<div class="proj-card"><div class="proj-num">1</div><h4>Snake</h4><p>A growing list-based body, wall and self collision, and a rising difficulty curve.</p></div>
+<div class="proj-card"><div class="proj-num">2</div><h4>Pong</h4><p>Two paddles, keyboard controls, and a bouncing ball with simple collision math.</p></div>
+<div class="proj-card"><div class="proj-num">3</div><h4>Maze</h4><p>A drawn layout, keyboard movement, and a goal tile that ends the game.</p></div>
+<div class="proj-card"><div class="proj-num">4</div><h4>Dodge Game</h4><p>Falling or moving obstacles, a lives counter, and a survive-the-timer win condition.</p></div>
+<div class="proj-card"><div class="proj-num">5</div><h4>Catch the Apple</h4><p>Build on this week's live demo with your own art, scoring twist, and difficulty curve.</p></div>
+</div>
+<div class="chips"><span class="chip">final project</span><span class="chip">Snake</span><span class="chip">Pong</span><span class="chip">Maze</span><span class="chip">Dodge</span></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-5', 'Final Project: Choose Your Game')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w5-6">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-rocket"></use></svg></div><div><p class="sub-eyebrow">Bonus · Level 5.6</p><h3>Beyond This Course: Career Paths</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Planning, building, debugging, and presenting are the exact same skills used every day by real game developers, engineers, and scientists.</p></div></div>
 <p class="sub-body">The exact skills you practiced this week — planning, building, debugging, presenting — are used every day by game developers, software engineers, data scientists, game designers, and robotics engineers. This quest was never just about one game; it's a first step into any of those paths. <span class="sub-body-extra">This quest was never just about one game — it's a genuine first step into any of those careers.</span></p><div class="why-wrap"><p class="why-title"><svg class="icon sm"><use href="#i-star"></use></svg>Why This Matters</p><ul class="why-matters"><li>This quest is a first step, not a finish line.</li><li>The same skills apply directly to app development, robotics, and data science.</li><li>Every project you build makes the next one easier and faster.</li></ul></div>
 <div class="chips"><span class="chip">game dev</span><span class="chip">software engineering</span><span class="chip">robotics</span></div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-5', 'Beyond This Course: Career Paths')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
-<div class="subpanel" id="w5-6">
-<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-check"></use></svg></div><div><p class="sub-eyebrow">Level 5.6 · Live Demo</p><h3>Launch Checklist</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Check off every step of your launch checklist to trigger the celebration — and finish your quest.</p></div></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-6', 'Beyond This Course: Career Paths')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
+<div class="subpanel" id="w5-7">
+<div class="subpanel-head"><div class="icon-badge"><svg class="icon lg"><use href="#i-check"></use></svg></div><div><p class="sub-eyebrow">Level 5.7 · Live Demo</p><h3>Launch Checklist</h3></div></div><div class="tldr-box"><svg class="icon lg"><use href="#i-lightbulb"></use></svg><div><b>Quick Guide</b><p>Check off every step of your launch checklist to trigger the celebration — and finish your quest.</p></div></div>
 <p class="sub-body">Check off every step to launch your confetti — and your finished game.</p>
 <div class="panels">
 <div class="panel">
@@ -1017,7 +1198,8 @@ name = <span class="cf">input</span>(<span class="c2">"What's your name? "</span
 <div class="confetti-area" id="confettiArea"><svg class="trophy-wrap"><use href="#i-trophy"></use></svg></div>
 </div>
 </div>
-<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-6', 'Launch Checklist')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+<div class="download-row"><button class="download-btn" onclick="downloadNotes('w5-7', 'Launch Checklist')" type="button"><svg class="icon"><use href="#i-download"></use></svg>Download PDF Notes</button></div></div>
+
 </div>
 </div>
 </section>
@@ -1107,34 +1289,40 @@ applySeenDots();
 
 // ---------- Per-sub-level unlock codes ----------
 const CODE_HASHES = {
-  'w1-1': 'd25f8f154180c4ddb656d29b8dabeb2b91df7bcba95ed6bf1104e8c31d3c4f85',
-  'w1-2': '8b6ea2a89ccbaebad72d18c85bc312dd1a0c776a2c48b9ac8a9ce02c7654da42',
-  'w1-3': '59eeb162699317f2df2d5b17285eb53d75a68d6b82e120ef0264a8e2c4048f2e',
-  'w1-4': '6dcce3cf8da4f2345c5477383737c1b936ac5d43599008eacf1c26ce517de4f6',
-  'w1-5': '7fd45a399ba3f6ea917fc7a1b1e96db14622923a70a5cd95cf0bdbd0d6f50ede',
-  'w1-6': '84815115d5e1b0c8d49a13bbffb4bef6d0133dd9149c823357995c3e52db8a22',
-  'w1-7': '9872e74d6598a187bf5d3bdc36663b9ad0c0a52b122678b6c442f7608d112e1a',
-  'w2-1': '2237952ece42ce0a5090e4d955de9e6735556603554fe9e255526dc123610dcf',
-  'w2-2': '709285fbf90021635f26dcf97fd345890f19491ef3e88787779391b0c5a1e387',
-  'w2-3': 'f9746b653db12fdea79fcc00e3d0f2d3e0d84df05196353c4c479a81578c7460',
-  'w2-4': '396433e6a322ea66039739584cec7329f490c03de5154621470c5cbab490096f',
-  'w2-5': 'f71a96d1d35137b0141524eb030d2ab57f1fa38f53ee3b265596d945f73c0cfd',
-  'w2-6': '4183d3ee6c4a222b6e4200efcf80c648f0b9a0d91f337838ea2b207f61100b57',
-  'w3-1': 'c5c825ae070e12b9cb5114a03baa255dfe620e0c8102924b62bba0a696ab42ec',
-  'w3-2': '588c221a05186fb1320779e8abcfd24df4d1f70660b0af4c730f6bae94b4847f',
-  'w3-3': 'f81f791e46daf21caff33b6bb42669f5636a23a0be7696af8a399214ca61ae65',
-  'w3-4': '0f1f88be1f92ec5fe100d725c39dbb40235683bb4a70842b24294a4a8f945932',
-  'w3-5': '489d9b672671c586a673226d3fca08cfbd829ab45edeaa29b288a91f4d82008c',
-  'w4-1': 'aceb36e619c5a3e7ab8c2d36afc77159854d20692327a86433babe40afacef6b',
-  'w4-2': '7f4466880c3d76a1162690fd157686d5ae272db7ee6a4756ef23b01abe7958e3',
-  'w4-3': 'ee159dd59e7d86dba4f128ee275f37056a1381a52fbeaae1f2c99d770ecc2fe2',
-  'w4-4': '7e3cd970ce3788f6b58dcf07604065c9d47db43db3fe6f46c3002d0b999446af',
-  'w5-1': 'e3c0a278c31b343c4674bab126e171264427278ec69733eaad79b5c79291226b',
-  'w5-2': 'e45e481f60ba06a61861e429039f6b210e04656743a318610a432cf4304f4000',
-  'w5-3': '4d99acc150574f4af529e4c18555eadee1e8ffcff65627a779d43abc5e1fbfc7',
-  'w5-4': 'e7377dab8ab9b165e0d5bb6457da268144745b5bc8d8ca14d70903809b3bd467',
-  'w5-5': 'c83d11e345c1f883a0f6eb895e8867d848af0a23df45609c92573efb4625dea7',
-  'w5-6': '25c069fe886bb4ca0940d86ce63cac7f23f8b6c541639cf8fa40ffd3d6cd4651',
+  'w1-1': '02d3c62d92728a112ce68dd0e2dd8c6d78eb54fa9eed6eea6453b393e9056805',
+  'w1-2': 'a25e824559a93f2f1222c82102957144f7bed520d01f05c0cc107a7b6dcb9a55',
+  'w1-3': 'b295879dba98730aab3226889949aa50f1b547138d70eeedc175704aefd4c9b8',
+  'w1-4': '81fc1f11a7a166a7a17dd0ab8f87d3fd5b780a2469c5bc33218f24787159c099',
+  'w1-5': '6424fd4477a13154dd2f656956c811672cd45a87b9e8afdfd23072d501e4f1fd',
+  'w1-6': '83e3ee34c6b940a1b8cdc048d10f0a05f24eb2fa67e7c0a3e60f99c817182262',
+  'w1-7': '272825f5e0f20991633da2e8efd23dc1bf0e37e6bf4d810dfe5fabdc831fecf2',
+  'w1-8': '4b6ff5ff1d14444b73e2120a20e8ac184238a8d1362cfe6c0a8f9fe2349b1134',
+  'w1-9': '017634c67776a49563edeea5d0fa88e4d4aeadacbaaa6366e1fcb07446967dbe',
+  'w2-1': '1039acaa7793ed8cc7f6c93cfc998eebe47002d19a696e771d2aff7ad35d12ba',
+  'w2-2': '6fe3fa30f0ddf5803ee77ae43fd4eeff4debac83aea94a87d31c72a1a4ef2dbc',
+  'w2-3': '5705e7d24d902b8977e6d67a3aa929f932b22e6e770398e832511dbeb6ce92ef',
+  'w2-4': '2cec51b3f83616ea32375498e972d55c75bd0419f8b876635db9de16a096dad4',
+  'w2-5': 'b1f097423e010873f0a55ecdee90dff98de96f12d98d70b2d4a4196e8948e71d',
+  'w2-6': '88c80936e10aca296bccdb9cd4006e2f23f8284d3916aa4aa7c1077d35f0bb6d',
+  'w3-1': 'cfc5d301fac823c43fe62a893ac53d9b54c3f0f625702d831b3b845bb8567426',
+  'w3-2': 'fa8c4ffdc34a519c697d38cf762dd61c614f529b2ebe40b459330ce076614ea5',
+  'w3-3': '4b43e2a7f99773b8c53e66f7e128ccc07392410314197b4d01c06405eae527d0',
+  'w3-4': 'e8e339bae5236b73907a3cd8413200350ed931bc99e469326a21f8e95d5634e5',
+  'w3-5': 'd5a0867c4501e2b52036dfa345013f2ac9455ad7893b31589be2942b8f7d8588',
+  'w3-6': '1155b3b701bc9e0feae250f01da604c33c6263bc9f635c5474998803d0b71244',
+  'w4-1': 'd3ae510c1bbbb459f783b2dbf38e0cf85e3ef2452be11139e8d2cf5a4955603a',
+  'w4-2': 'fa401dbf29b981ea806e5f3e7823a3c592671b2356748445fff57ca4b964ea6a',
+  'w4-3': '9e4768ed932d6d5ae88dafd12c01bb7a30f7ff5fc287c159c8cfd117fafcc238',
+  'w4-4': 'd313aeb4e6ecab158f5a1f688612d6af94fe8063881adacf8594c5568a65dce8',
+  'w4-5': 'a86c550989bc15196c8323893c857679d98f903813f8c5b2ae236148dc6ebdad',
+  'w4-6': '0a22ac217c098bb90fb25545943c58b3027894c4e1a44fb5c9cdffc078fe2b11',
+  'w5-1': 'b71395dc1316007cd98be77a3f2a9f76bf69ef438586aa2970658f63236dfbc9',
+  'w5-2': '3dc81c24fe64562385d88b4aa052ec587132d49c729ff60caccc9bb60ef3f3c2',
+  'w5-3': 'e8ba3424ef90e8cac280e7be9880a5e854984c9145a0f3db13af0054d93220d2',
+  'w5-4': 'c8efa425f8427e7a3e59e1a3f3b24510bbe1988556698df157c99d3140e86462',
+  'w5-5': 'df29a4d67fd3b55db1a1d762bb38b37652aa0ec85bdd52b0ab96fd48e7bd20a6',
+  'w5-6': '4a135c3d94f2cac6ef5022890d22de87c126065bb7aeb3ec92ca21dde500b7d6',
+  'w5-7': '981dc39f0375913b07fef366d543bd08138963e00feed78f93b111062208cf6a',
 };
 
 async function sha256Hex(str){
