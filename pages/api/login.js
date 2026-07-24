@@ -20,6 +20,10 @@ function tooManyAttempts(ip) {
   return entry.count > MAX_ATTEMPTS;
 }
 
+// Codes with these roles are shared, reusable instructor logins - not
+// the one-per-student codes - so they're exempt from the single-use rule.
+const REUSABLE_ROLES = new Set(['instructor']);
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -45,21 +49,47 @@ export default async function handler(req, res) {
   try {
     const db = await getDb();
     const lookupHash = await hashCode(normalized);
-    const record = await db.collection('accessCodes').findOne({ lookupHash });
+    const col = db.collection('accessCodes');
+    const record = await col.findOne({ lookupHash });
 
     if (!record || record.active === false) {
       return res.status(401).json({ error: 'That code is not valid. Double-check it and try again.' });
     }
 
-    await db.collection('accessCodes').updateOne(
-      { _id: record._id },
-      { $inc: { useCount: 1 }, $set: { lastUsedAt: new Date() } }
-    );
+    const role = record.role || 'student';
+    const isReusable = REUSABLE_ROLES.has(role);
+
+    if (!isReusable && record.used) {
+      // Single-use code that's already been redeemed.
+      return res.status(401).json({
+        error: 'This code has already been used to log in and cannot be reused. Ask your instructor if you need help.',
+      });
+    }
+
+    // Atomically claim the code so two near-simultaneous requests with
+    // the same code can't both succeed (classic race condition on
+    // "check then update").
+    if (!isReusable) {
+      const claim = await col.updateOne(
+        { _id: record._id, used: { $ne: true } },
+        { $set: { used: true, usedAt: new Date() }, $inc: { useCount: 1 } }
+      );
+      if (claim.modifiedCount === 0) {
+        return res.status(401).json({
+          error: 'This code has already been used to log in and cannot be reused. Ask your instructor if you need help.',
+        });
+      }
+    } else {
+      await col.updateOne(
+        { _id: record._id },
+        { $inc: { useCount: 1 }, $set: { lastUsedAt: new Date() } }
+      );
+    }
 
     const token = await createSessionToken({
       codeId: String(record._id),
       label: record.label || null,
-      role: record.role || 'student',
+      role,
       iat: Math.floor(Date.now() / 1000),
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 14, // 14 days
     });
