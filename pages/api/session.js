@@ -18,11 +18,18 @@ export default async function handler(req, res) {
   const session = await verifySessionToken(cookies[COOKIE_NAME]);
 
   if (!session) {
-    return res.status(200).json({ loggedIn: false, isInstructor: false });
+    return res.status(200).json({ loggedIn: false, isInstructor: false, hasEarlyAccess: false });
   }
+
+  const isInstructor = session.role === 'instructor';
+  // Early-access codes (the "42nd/43rd" style extra codes) skip the
+  // class-schedule date lock, same as instructors, but don't get the
+  // instructor preview tools panel or an auto-unlock on every topic.
+  const isEarlyAccess = session.role === 'early_access';
 
   return res.status(200).json({
     loggedIn: true,
-    isInstructor: session.role === 'instructor',
+    isInstructor,
+    hasEarlyAccess: isInstructor || isEarlyAccess,
   });
 }
